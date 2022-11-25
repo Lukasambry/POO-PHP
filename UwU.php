@@ -1,1 +1,1 @@
-Tom est un enculer du zizi
+Alors ca c pas sympo
