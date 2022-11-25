@@ -1,1 +1,1 @@
-Issam est homosexuel ?
+Tom est un enculer du zizi
