@@ -2,7 +2,7 @@
 
 namespace Classes;
 
-class Character
+abstract class Character
 {
     public function __construct(
         protected string $name,
