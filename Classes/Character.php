@@ -11,7 +11,9 @@ abstract class Character
         protected int $physicalDamages,
         protected int $magicalDamages,
         protected int $mana,
-        protected int $exp,
+        protected int $exp = 0,
+        protected int $level = 1,
+        protected int $type, // 0 = eau, 1 = feu, 2 = vent, 3 = lumière, 4 = ténèbres
     ) {
     }
 
@@ -52,6 +54,16 @@ abstract class Character
         return $this->exp;
     }
 
+    public function getLevel(): int
+    {
+        return $this->level;
+    }
+
+    public function getType(): int
+    {
+        return $this->type;
+    }
+
     public function setName($name)
     {
         $this->name = $name;
@@ -84,6 +96,18 @@ abstract class Character
     public function setExp($exp)
     {
         $this->exp = $exp;
+
+    }
+
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+    }
+
+    public function setType($type)
+    {
+        $this->type = $type;
 
     }
     
@@ -122,6 +146,12 @@ abstract class Character
     {
         $this->mana -= 5; //Consume 10 mana
         $this->health += 10; //and restore 10 health
+    }
+
+    public function levelUp(): void //Level up function
+    {
+        $this->level++;
+        $this->expToLvlUp *= 1.5;
     }
 
 
