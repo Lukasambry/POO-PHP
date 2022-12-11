@@ -137,34 +137,42 @@ abstract class Character
     public function rest(): void
     {
         $this->mana += 10; //Restores 10 mana
+        echo("You restored 10 mana\n");
     }
 
     
     public function sleep(): void
     {
-        $this->mana -= 5; //Consume 10 mana
+        $this->mana -= 5; //Consume 5 mana
         $this->health += 10; //and restore 10 health
+        echo("You lost 5 mana and restored 10 health\n");
     }
 
     public function levelUp(): void //Level up function
     {
-        $this->level++;
-        $this->expToLvlUp *= 1.5;
+        if($this->exp >= 100){
+            $this->level++;
+            $this->health += 10;
+            $this->defense += 10;
+            $this->mana += 10;
+            $this->exp = 0;
+            echo("You leveled up !\n");
+        }// add 10 physic or magic damage depending on the child class
     }
 
 
-    //Comment while Weapon isn't yet created
+   
+    public function giveWeapon(?Weapon $weapon): void
+    {
+        if($weapon === null)
+        {
+            $this->physicalDamages = $this->physicalDamages;
+        };
 
-    // public function giveWeapon(?Weapon $weapon): void
-    // {
-    //     if($weapon === null){
-    //         $this->physicalDamages = $this->physicalDamages;
-    //     };
-
-    //     if($weapon instanceof PhysicalWeapon) {
-    //         $this->physicalDamages += $weapon->damage;
-    //     } else {
-    //         $this->magicalDamages += $weapon->damage;
-    //     }
-    // }
+        if($weapon instanceof PhysicalWeapon) {
+            $this->physicalDamages += $weapon->damage;
+        }  else {
+            $this->magicalDamages += $weapon->damage;
+        }
+    }
 }
