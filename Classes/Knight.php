@@ -22,4 +22,27 @@ class Knight extends Character
         );
     }
 
+    public function parade()
+    {
+        $this->defense += 10;
+        $this->mana -= 25;
+        echo "Parade !\n";
+    }
+
+    public function waterSlash($target)
+    {
+        $this->physicalDamages = 7;
+        $target->health -= $this->physicalDamages * 5;
+        $this->mana -= 60;
+        echo "Water Slash !\n";
+    }
+
+    public function slice($target)
+    {
+        $this->physicalDamages = rand(20, 30);
+        $target->health -= $this->physicalDamages;
+        echo($this->physicalDamages);
+        $this->mana -= 40;
+        echo "Slice !\n";
+    }
 }
