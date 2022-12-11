@@ -7,7 +7,7 @@ abstract class Character
     public function __construct(
         protected string $name,
         protected int $health,
-        protected int $defense,
+        protected float $defense,
         protected int $physicalDamages,
         protected int $magicalDamages,
         protected int $mana,
@@ -38,7 +38,7 @@ abstract class Character
         return $this->magicalDamages;
     }
 
-    public function getDefense(): int
+    public function getDefense(): float
     {
         if ($this->defense > 100) return 1;
 
