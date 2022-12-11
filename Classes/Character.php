@@ -148,7 +148,7 @@ abstract class Character
         $this->health += 10; //and restore 10 health
     }
 
-    public function levelUp(): void
+    public function levelUp(): void //Level up function
     {
         $this->level++;
         $this->expToLvlUp *= 1.5;
