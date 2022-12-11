@@ -29,7 +29,8 @@ class Archer extends Character
     public function arcaneShot($target)
     {
         if($this->arrow <= 0){
-            echo "You don't have any arrows left !\n";
+            echo "You don't have any arrows left ! Use Focus !\n";
+            $this->focus();
             return;
         }else{
         $arcaneShot = $this->magicalDamages = 7 + $this->physicalDamages;
@@ -43,7 +44,8 @@ class Archer extends Character
     public function tripleShot($target)
     {
         if($this->arrow <= 0){
-            echo "You don't have any arrows left !\n";
+            echo "You don't have any arrows left ! Use Focus !\n";
+            $this->focus();
             return;
         }else{
         $tripleShoot = $this->physicalDamages = 10 * 3;
