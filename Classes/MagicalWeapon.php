@@ -1,7 +1,7 @@
 <?php
 namespace Classes;
 
-require_once("Weapon.php");
+use Classes\Weapon;
 
 class MagicalWeapon extends Weapon
 {

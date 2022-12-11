@@ -2,7 +2,7 @@
 
 namespace Classes;
 
-require_once("PhysicalWeapon.php");
+use Classes\PhysicalWeapon;
 
 class Dagger extends PhysicalWeapon
 {
