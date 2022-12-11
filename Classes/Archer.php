@@ -28,20 +28,30 @@ class Archer extends Character
 
     public function arcaneShot($target)
     {
+        if($this->arrow <= 0){
+            echo "You don't have any arrows left !\n";
+            return;
+        }else{
         $arcaneShot = $this->magicalDamages = 7 + $this->physicalDamages;
         $target->health -= $arcaneShot;
         $this->mana -= 25;
         $this->arrows -= 1;
         echo "Arcane Shot !\n";
+        }
     }
 
     public function tripleShot($target)
     {
+        if($this->arrow <= 0){
+            echo "You don't have any arrows left !\n";
+            return;
+        }else{
         $tripleShoot = $this->physicalDamages = 10 * 3;
         $target->health -= $tripleShoot;
         $this->mana -= 60;
         $this->arrows -= 1;
         echo "Triple Shot ! \n";
+            }
     }
 
     public function focus()
