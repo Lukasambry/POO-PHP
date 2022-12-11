@@ -98,13 +98,11 @@ abstract class Character
         $this->exp = $exp;
 
     }
-
     public function setLevel($level)
     {
         $this->level = $level;
 
     }
-
     public function setType($type)
     {
         $this->type = $type;
