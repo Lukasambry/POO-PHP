@@ -23,6 +23,22 @@ class Knight extends Character
         );
     }
 
+    public function waterSlash($target)
+    {
+        $this->physicalDamages = 7;
+        $target->health -= $this->physicalDamages * 5;
+        $this->mana -= 60;
+        echo "Water Slash !\n";
+    }
+
+    public function slice($target)
+    {
+        $this->physicalDamages = rand(20, 30);
+        $target->health -= $this->physicalDamages;
+        $this->mana -= 40;
+        echo "Slice !\n";
+    }
+
     public function parade()
     {
         if($this->cooldown === 0){
@@ -32,9 +48,9 @@ class Knight extends Character
             $this->cooldown++; 
         } else if($this->cooldown === 1){
             $this->cooldown++;
-            echo 'Parade est encore actif' . PHP_EOL;
+            echo 'Parade still active' . PHP_EOL;
         } else if($this->cooldown === 2){
-            echo 'Parade est terminé' . PHP_EOL;
+            echo 'Parade is finished' . PHP_EOL;
             $this->cooldown = 0;
             $this->defense -= 10;
         }
@@ -53,20 +69,4 @@ class Knight extends Character
             return true;
         }
     }  
-
-    public function waterSlash($target)
-    {
-        $this->physicalDamages = 7;
-        $target->health -= $this->physicalDamages * 5;
-        $this->mana -= 60;
-        echo "Water Slash !\n";
-    }
-
-    public function slice($target)
-    {
-        $this->physicalDamages = rand(20, 30);
-        $target->health -= $this->physicalDamages;
-        $this->mana -= 40;
-        echo "Slice !\n";
-    }
 }
