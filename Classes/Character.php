@@ -14,6 +14,7 @@ abstract class Character
         protected int $exp = 0,
         protected int $level = 1,
         protected int $affinity, // 0 = eau, 1 = feu, 2 = vent, 3 = lumière, 4 = ténèbres
+        protected int $cooldown = 0
     ) {
     }
 
@@ -174,5 +175,5 @@ abstract class Character
         }  else {
             $this->magicalDamages += $weapon->damage;
         }
-    }
+    }  
 }
