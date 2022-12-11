@@ -2,7 +2,7 @@
 
 namespace Classes;
 
-require_once("MagicalWeapon.php");
+use Classes\MagicalWeapon;
 
 class Staff extends MagicalWeapon
 {
