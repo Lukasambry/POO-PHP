@@ -148,6 +148,12 @@ abstract class Character
         $this->health += 10; //and restore 10 health
     }
 
+    public function levelUp(): void
+    {
+        $this->level++;
+        $this->expToLvlUp *= 1.5;
+    }
+
 
     //Comment while Weapon isn't yet created
 
