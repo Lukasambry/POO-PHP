@@ -41,7 +41,6 @@ class Knight extends Character
     {
         $this->physicalDamages = rand(20, 30);
         $target->health -= $this->physicalDamages;
-        echo($this->physicalDamages);
         $this->mana -= 40;
         echo "Slice !\n";
     }
