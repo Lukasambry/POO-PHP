@@ -13,7 +13,7 @@ abstract class Character
         protected int $mana,
         protected int $exp = 0,
         protected int $level = 1,
-        protected int $type, // 0 = eau, 1 = feu, 2 = vent, 3 = lumière, 4 = ténèbres
+        protected int $affinity, // 0 = eau, 1 = feu, 2 = vent, 3 = lumière, 4 = ténèbres
     ) {
     }
 
