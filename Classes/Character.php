@@ -60,9 +60,9 @@ abstract class Character
         return $this->level;
     }
 
-    public function getType(): int
+    public function getAffinity(): int
     {
-        return $this->type;
+        return $this->affinity;
     }
 
     public function setName($name)
@@ -175,5 +175,162 @@ abstract class Character
         }  else {
             $this->magicalDamages += $weapon->damage;
         }
-    }  
+    }
+
+
+    public function affinityCheck($myAbility,$targetAffinity)
+    {
+
+        switch ($myAbility)
+        {
+            case 0:
+                // Wind > Water > Fire
+                echo "Water is strong against Fire, weak against Wind" . PHP_EOL;
+                if($targetAffinity == 1)
+                {
+                    if($this->physicalDamages > $this->magicalDamages)
+                    {
+                        return $this->physicalDamages *= 1.2;
+                        echo($this->physicalDamages);
+                    }else{
+                        return $this->magicalDamages *= 1.2;
+                        echo($this->magicalDamages);
+                    }
+                }else if($targetAffinity == 2)
+                {
+                    if($this->physicalDamages > $this->magicalDamages)
+                    {
+                        return $this->physicalDamages *= 0.8;
+                        echo($this->physicalDamages);
+                    }else{
+                        return $this->magicalDamages *= 0.8;
+                        echo($this->magicalDamages);
+                    }
+                }else
+                {echo('perdu');}
+                break;
+
+            case 1:
+                // Water > Fire > Wind
+                echo "Fire is strong against Wind, weak against Water" . PHP_EOL;
+                if($targetAffinity == 2)
+                {
+                    if($this->physicalDamages >= $this->magicalDamages)
+                    {
+                        return $this->physicalDamages *= 1.2;
+                    }else{
+                        return $this->magicalDamages *= 1.2;
+                    }
+                }else if($targetAffinity == 0)
+                {
+                    if($this->physicalDamages >= $this->magicalDamages)
+                    {
+                       return $this->physicalDamages *= 0.8;
+                    }else{
+                        return $this->magicalDamages *= 0.8;
+                    }
+                }else
+                {}
+                break;
+
+            case 2:
+                // Fire > Wind > Water
+                echo "Wind is strong against Water, weak against Fire" . PHP_EOL;
+                if($targetAffinity == 0)
+                {
+                    if($this->physicalDamages >= $this->magicalDamages)
+                    {
+                        return $this->physicalDamages *= 1.2;
+                    }else{
+                        return $this->magicalDamages *= 1.2;
+                    }
+                }else if($targetAffinity == 1)
+                {
+                    if($this->physicalDamages >= $this->magicalDamages)
+                    {
+                       return $this->physicalDamages *= 0.8;
+                    }else{
+                        return $this->magicalDamages *= 0.8;
+                    }
+                }else
+                {}
+                break;
+
+            case 3:
+                // Light > Dark
+                echo "Light is strong against Dark, weak against None" . PHP_EOL;
+                if($targetAffinity == 4)
+                {
+                    if($this->physicalDamages >= $this->magicalDamages)
+                    {
+                        return $this->physicalDamages *= 1.2;
+                    }else{
+                        return $this->magicalDamages *= 1.2;
+                    }
+                }else
+                {}
+                break;
+
+            case 4:
+                // Dark > Light
+                echo "Dark is strong against Light, weak against None" . PHP_EOL;
+                if($targetAffinity == 3)
+                {
+                    if($this->physicalDamages >= $this->magicalDamages)
+                    {
+                        return $this->physicalDamages *= 1.2;
+                    }else{
+                        return $this->magicalDamages *= 1.2;
+                    }
+                }else
+                {}
+                break;
+
+            default:
+                return false;
+                break;
+        }
+    }
+
+    /* <?php 
+
+function affinity_compare($your_affinity, $enemy_affinity) {
+    
+    // Check if input is valid
+    $affinity_list = array('fire', 'water', 'wind');
+    if (!in_array($your_affinity, $affinity_list) || !in_array($enemy_affinity, $affinity_list)) {
+        return "Invalid input!";
+    }
+    
+    // Compare affinities
+    if ($your_affinity == $enemy_affinity) {
+        return "It's a tie!";
+    }
+    elseif ($your_affinity == "fire") {
+        if ($enemy_affinity == "wind") {
+            return "You have the advantage!";
+        }
+        else {
+            return "The enemy has the advantage!";
+        }
+    }
+    elseif ($your_affinity == "water") {
+        if ($enemy_affinity == "fire") {
+            return "You have the advantage!";
+        }
+        else {
+            return "The enemy has the advantage!";
+        }
+    }
+    else {
+        if ($enemy_affinity == "water") {
+            return "You have the advantage!";
+        }
+        else {
+            return "The enemy has the advantage!";
+        }
+    }
+}
+
+?>*/
 }

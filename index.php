@@ -1,12 +1,29 @@
 <?php
 
 use Classes\Archer;
+use Classes\Assassin;
 use Classes\Knight;
+use Classes\Mage;
+use Classes\Paladin;
 
 require_once('autoload.php');
 
 $knight = new Knight();
 $archer = new Archer();
+$mage = new Mage();
+$rogue = new Assassin();
+$paladin = new Paladin();
+
+// echo('Mage :' . $mage->getPhysicalDamages() . " " . $mage->getMagicalDamages() . PHP_EOL);
+// echo('Paladin :'.$paladin->getPhysicalDamages() . " " . $paladin->getMagicalDamages() . PHP_EOL);
+// echo('Knight :'.$knight->getPhysicalDamages() . " " . $knight->getMagicalDamages() . PHP_EOL);
+// echo('Archer :'.$archer->getPhysicalDamages() . " " . $archer->getMagicalDamages() . PHP_EOL);
+// echo('Rogue :'.$rogue->getPhysicalDamages() . " " . $rogue->getMagicalDamages() . PHP_EOL);
+
+$characters = [$mage,$paladin,$knight,$archer,$rogue];
+
+    echo(" ". $characters[4]->affinityCheck($characters[4]->getAffinity(), $characters[0]->getAffinity()));
+
 
 
 ?>
