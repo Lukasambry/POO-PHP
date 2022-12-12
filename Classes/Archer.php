@@ -63,7 +63,7 @@ class Archer extends Character
             $this->arrows += 5;
 
             if(luck(40)){
-                echo("Dodge" . PHP_EOL);
+                echo("Dodge" . PHP_EOL); //cf Ticket Trello
                 return 1;
             } return parent::getDefense();
 
@@ -71,10 +71,6 @@ class Archer extends Character
             $this->cooldown++;
 
         } else if($this->cooldown === 1){
-            if(luck(40)){
-                echo("Dodge" . PHP_EOL);
-                return 1;
-            } return parent::getDefense();
             $this->cooldown++;
             echo 'Focus skill is still active.' . PHP_EOL;
             

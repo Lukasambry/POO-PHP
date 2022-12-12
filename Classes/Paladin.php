@@ -49,7 +49,7 @@ class Paladin extends Character
             $this->cooldown++; 
         } else if($this->cooldown === 1){
             $this->cooldown++;
-            echo 'Holy Prayer still active' . PHP_EOL;
+            echo 'Holy Prayer is still active' . PHP_EOL;
         } else if($this->cooldown === 2){
             echo 'Holy Prayer is finished' . PHP_EOL;
             $this->cooldown = 0;

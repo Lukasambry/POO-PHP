@@ -48,7 +48,7 @@ class Knight extends Character
             $this->cooldown++; 
         } else if($this->cooldown === 1){
             $this->cooldown++;
-            echo 'Parade still active' . PHP_EOL;
+            echo 'Parade is still active' . PHP_EOL;
         } else if($this->cooldown === 2){
             echo 'Parade is finished' . PHP_EOL;
             $this->cooldown = 0;
