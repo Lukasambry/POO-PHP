@@ -2,7 +2,9 @@
 
 namespace Classes;
 
-abstract class Character
+use Interfaces\GlobalSkills;
+
+abstract class Character implements GlobalSkills
 {
     public function __construct(
         protected string $name,
