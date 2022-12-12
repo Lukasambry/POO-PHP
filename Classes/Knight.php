@@ -6,7 +6,7 @@ require_once('functions.php');
 
 class Knight extends Character
 {
-    //Knight = 125 hp, 29 def, 10 ad, 0 ap, 30 mana, 0 exp, lvl 1, affinité eau
+    //Knight = 125 hp, 29 def, 10 ad, 0 ap, 30 mana (5 mana regen / tour)
     public function __construct()
     {
         parent::__construct(
@@ -63,7 +63,7 @@ class Knight extends Character
     //$knight->checkCooldown
     public function checkCooldown($target) {
         if($target->cooldown != 0){
-            $target->parade(); // et si c'est le cas on incrémente le cooldown
+            $target->parade(); // if true, the cooldown is active and need incrementation
             return false;
         } else if($target->cooldown == 0){
             return true;

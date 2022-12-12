@@ -87,7 +87,7 @@ class Archer extends Character
 
     public function checkCooldown($target) {
         if($target->cooldown != 0){
-            $target->focus(); // et si c'est le cas on incrémente le cooldown
+            $target->focus(); // if true, the cooldown is active and need incrementation
             return false;
         } else if($target->cooldown == 0){
             return true;
