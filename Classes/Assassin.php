@@ -4,7 +4,7 @@ namespace Classes;
 use Classes\Character;
 require_once('functions.php');
 
-class Paladin extends Character
+class Assassin extends Character
 {
     //Assassin = 90 hp, 15 def, 20 ad, 0 ap, 90 mana (5 mana regen / tours)
     public function __construct()
@@ -18,7 +18,7 @@ class Paladin extends Character
             mana:90,
             exp:0,
             level:1,
-            affinity:4, //Light
+            affinity:4, //Dark
             cooldown:0
         );
 
