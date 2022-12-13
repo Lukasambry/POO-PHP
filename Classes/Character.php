@@ -11,8 +11,8 @@ abstract class Character
         protected int $physicalDamages,
         protected int $magicalDamages,
         protected int $mana,
-        protected int $exp = 0,
-        protected int $level = 1,
+        protected int $exp,
+        protected int $level,
         protected int $affinity, // 0 = water, 1 = fire, 2 = wind, 3 = light, 4 = dark
         protected int $cooldown = 0
     ) {

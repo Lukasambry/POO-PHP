@@ -22,7 +22,13 @@ $paladin = new Paladin();
 
 $characters = [$mage,$paladin,$knight,$archer,$rogue];
 
+for($i = 0; $i < sizeof($characters); $i ++){
+    $characters[$i]->setExp(0);
+    $characters[$i]->setLevel(1);
+}
+
     echo(" ". $characters[4]->affinityCheck($characters[4]->getAffinity(), $characters[0]->getAffinity()));
+    echo($characters[3]->getLevel() . " a " . $characters[3]->getExp());
 
 
 
