@@ -9,7 +9,6 @@ use Classes\Paladin;
 use Classes\Bow;
 use Classes\Dagger;
 use Classes\Hammer;
-use Classes\Paladin;
 use Classes\Staff;
 use Classes\Sword;
 
