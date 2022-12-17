@@ -293,46 +293,10 @@ abstract class Character implements GlobalSkills
                 break;
         }
     }
-
-    /* <?php 
-
-function affinity_compare($your_affinity, $enemy_affinity) {
-    
-    // Check if input is valid
-    $affinity_list = array('fire', 'water', 'wind');
-    if (!in_array($your_affinity, $affinity_list) || !in_array($enemy_affinity, $affinity_list)) {
-        return "Invalid input!";
-    }
-    
-    // Compare affinities
-    if ($your_affinity == $enemy_affinity) {
-        return "It's a tie!";
-    }
-    elseif ($your_affinity == "fire") {
-        if ($enemy_affinity == "wind") {
-            return "You have the advantage!";
-        }
-        else {
-            return "The enemy has the advantage!";
-        }
-    }
-    elseif ($your_affinity == "water") {
-        if ($enemy_affinity == "fire") {
-            return "You have the advantage!";
-        }
-        else {
-            return "The enemy has the advantage!";
-        }
-    }
-    else {
-        if ($enemy_affinity == "water") {
-            return "You have the advantage!";
-        }
-        else {
-            return "The enemy has the advantage!";
-        }
-    }
-}
-
-?>*/
+    public function checkMana($needMana) {
+        if($this->mana < $needMana) {
+            echo("You lack ". ($needMana-$this->mana)  ." mana to perform this action\n");
+            return false;
+        } else return true;
+    } 
 }
