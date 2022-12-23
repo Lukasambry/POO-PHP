@@ -1,7 +1,9 @@
 <?php
+
 namespace Classes;
 
 use Classes\Character;
+
 require_once('functions.php');
 
 class Assassin extends Character
@@ -11,63 +13,63 @@ class Assassin extends Character
     {
         parent::__construct(
             'Illidan Stormrage',
-            health:90,
-            defense:15,
-            physicalDamages:20,
-            magicalDamages:0,
-            mana:90,
-            exp:0,
-            level:1,
-            affinity:4, //Dark
-            cooldown:0
+            health: 90,
+            defense: 9,
+            physicalDamages: 20,
+            magicalDamages: 0,
+            mana: 90,
+            exp: 0,
+            level: 1,
+            affinity: 4, //Dark
+            cooldown: 0
         );
-
     }
 
     public function first($target)
     {
-        $this->physicalDamages ? 35 : 30;
-        $target->health -= $this->physicalDamages;
+        $target->health -= ($this->physicalDamages + 30) - $target->defense;
         $this->mana -= 45;
-        echo "Ambush !\n";  
+        echo "Ambush !\n";
+        echo $target->name . ' a perdu ' . ($this->physicalDamages + 30) - $target->defense . " points de vies" . PHP_EOL;
     }
 
     public function second($target)
     {
-        $this->physicalDamages = 25;
-        $target->health -= $this->physicalDamages;
+        $target->health -= (($this->physicalDamages + 20) - $target->defense);
         $this->mana -= 30;
-        echo "Eviserate !\n";   
+        echo "Eviserate !\n";
+        echo $target->name . ' a perdu ' . (($this->physicalDamages + 20) - $target->defense) . " points de vies" . PHP_EOL;
     }
 
     public function buff()
     {
-        if($this->cooldown === 0){
+        if ($this->cooldown === 0) {
             $this->physicalDamages += 10;
-            if(luck(10)){
+            if (luck(10)) {
                 $this->physicalDamages *= 2;
-                echo("Dodge" . PHP_EOL); //cf Ticket Trello
+                echo ("Dodge" . PHP_EOL); //cf Ticket Trello
                 return 1;
-            } return parent::getDefense();
+            }
             $this->mana -= 20;
             echo "Stealth !\n" . PHP_EOL;
             $this->cooldown++;
-        } else if($this->cooldown === 1){
+        } else if ($this->cooldown === 1) {
             $this->cooldown++;
             echo 'Stealth is still active' . PHP_EOL;
-        } else if($this->cooldown === 2){
+        } else if ($this->cooldown === 2) {
             echo 'Stealth is finished' . PHP_EOL;
             $this->cooldown = 0;
             $this->physicalDamages -= 10;
         }
     }
 
-    public function checkCooldown($target) {
-        if($target->cooldown != 0){
+    public function checkCooldown($target)
+    {
+        if ($target->cooldown != 0) {
             $target->stealth(); // if true, the cooldown is active and need incrementation
             return false;
-        } else if($target->cooldown == 0){
+        } else if ($target->cooldown == 0) {
             return true;
         }
-    }  
+    }
 }

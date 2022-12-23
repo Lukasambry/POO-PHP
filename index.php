@@ -1,5 +1,7 @@
 <?php
 
+use Classes\Character;
+
 use Classes\Mage;
 use Classes\Archer;
 use Classes\Assassin;
@@ -35,6 +37,9 @@ do {
     $enemy = $characters[array_rand($characters)];
 } while ($you->getName() == $enemy->getName());
 
+
+
+
 //Set level 1 
 for ($i = 0; $i < sizeof($characters); $i++) {
     $characters[$i]->setExp(0);
@@ -49,21 +54,22 @@ $rogue->giveWeapon($dagger);
 $paladin->giveWeapon($hammer);
 
 
-// echo $you->getName() . " vs " . $enemy->getName() . PHP_EOL;
-// echo "Le combat va commencer !" . PHP_EOL;
+echo $you->getName() . " vs " . $enemy->getName() . PHP_EOL;
+echo "Le combat va commencer !" . PHP_EOL;
 
-$yourSkills = get_class_methods($you);
-$enemySkill =  get_class_methods($enemy);
-
-echo "Vous êtes " . $you->getName() . PHP_EOL;
-echo $yourSkills[1] . PHP_EOL;
-echo $yourSkills[2] . PHP_EOL;
-echo $yourSkills[3] . PHP_EOL;
-
-//$you->first($target);
 
 do {
-} while (!$you->isAlive() || !$enemy->isAlive());
+
+    if(rand(1,2) == 1){
+        $you->first($enemy);
+    }else {
+        $you->second($enemy);
+    }
+
+
+    // $enemy->levelUp();
+    // $you->levelUp();
+} while ($you->isAlive() == false || $enemy->isAlive() == false);
 
 
 
