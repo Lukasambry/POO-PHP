@@ -24,21 +24,21 @@ class Mage extends Character
 
     }
 
-    public function meteor($target)
+    public function first($target)
     {
         $meteor = $this->magicalDamages = 35;
         $target->health -= $meteor;
         $this->mana -= 45;
     }
 
-    public function fireTempest($target)
+    public function second($target)
     {
         $fireTempest = $this->magicalDamages = 30;
         $target->health -= $fireTempest;
         $this->mana -= 30;
     }
 
-    public function phoenixFlame()
+    public function buff()
     {
         if($this->cooldown === 0){
             $this->defense += 20;

@@ -24,7 +24,7 @@ class Paladin extends Character
 
     }
 
-    public function hammerofLight($target)
+    public function first($target)
     {
         $this->physicalDamages = 25;
         $target->health -= $this->physicalDamages;
@@ -32,7 +32,7 @@ class Paladin extends Character
         echo "Hammer of Light !\n";
     }
 
-    public function Judgement($target)
+    public function second($target)
     {
         $this->physicalDamages = 10;
         $target->health -= $this->physicalDamages * 3;
@@ -40,7 +40,7 @@ class Paladin extends Character
         echo "Judgement !\n";
     }
 
-    public function holyPrayer()
+    public function buff()
     {
         if($this->cooldown === 0){
             $this->defense += 15;

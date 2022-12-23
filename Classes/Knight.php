@@ -23,7 +23,7 @@ class Knight extends Character
         );
     }
 
-    public function waterSlash($target)
+    public function first($target)
     {
         $this->physicalDamages = 7;
         $target->health -= $this->physicalDamages * 5;
@@ -31,7 +31,7 @@ class Knight extends Character
         echo "Water Slash !\n";
     }
 
-    public function slice($target)
+    public function second($target)
     {
         $this->physicalDamages = rand(20, 30);
         $target->health -= $this->physicalDamages;
@@ -39,7 +39,7 @@ class Knight extends Character
         echo "Slice !\n";
     }
 
-    public function parade()
+    public function buff()
     {
         if($this->cooldown === 0){
             $this->defense += 10;

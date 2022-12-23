@@ -26,11 +26,11 @@ class Archer extends Character
 
     }
 
-    public function arcaneShot($target)
+    public function first($target)
     {
         if($this->arrow <= 0){
             echo "You don't have any arrows left ! Use Focus !\n";
-            $this->focus();
+            $this->buff();
             return;
         }else{
         $arcaneShot = $this->magicalDamages = 7 + $this->physicalDamages;
@@ -41,11 +41,11 @@ class Archer extends Character
         }
     }
 
-    public function tripleShot($target)
+    public function second($target)
     {
         if($this->arrow <= 0){
             echo "You don't have any arrows left ! Use Focus !\n";
-            $this->focus();
+            $this->buff();
             return;
         }else{
         $tripleShoot = $this->physicalDamages = 10 * 3;
@@ -56,7 +56,7 @@ class Archer extends Character
             }
     }
 
-    public function focus()
+    public function buff()
     {
         if($this->cooldown === 0){
             $this->mana -= 40;

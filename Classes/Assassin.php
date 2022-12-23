@@ -24,7 +24,7 @@ class Assassin extends Character
 
     }
 
-    public function ambush($target)
+    public function first($target)
     {
         $this->physicalDamages ? 35 : 30;
         $target->health -= $this->physicalDamages;
@@ -32,7 +32,7 @@ class Assassin extends Character
         echo "Ambush !\n";  
     }
 
-    public function eviserate($target)
+    public function second($target)
     {
         $this->physicalDamages = 25;
         $target->health -= $this->physicalDamages;
@@ -40,7 +40,7 @@ class Assassin extends Character
         echo "Eviserate !\n";   
     }
 
-    public function stealth()
+    public function buff()
     {
         if($this->cooldown === 0){
             $this->physicalDamages += 10;
