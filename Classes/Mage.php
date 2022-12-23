@@ -12,7 +12,7 @@ class Mage extends Character
         parent::__construct(
             'Kael\'thas Sunstrider',
             health:95,
-            defense:9,
+            defense:8,
             physicalDamages:0,
             magicalDamages:20,
             mana:100,
@@ -24,21 +24,23 @@ class Mage extends Character
 
     }
 
-    public function meteor($target)
+    public function first($target)
     {
-        $meteor = $this->magicalDamages = 35;
-        $target->health -= $meteor;
+        $target->health -= (($this->magicalDamages + 35) - ($target->defense));
         $this->mana -= 45;
+        echo "Meteor !";
+        echo $target->name . " a perdu " . (($this->magicalDamages + 35) - ($target->defense)) . " points de vies" . PHP_EOL;
     }
 
-    public function fireTempest($target)
+    public function second($target)
     {
-        $fireTempest = $this->magicalDamages = 30;
-        $target->health -= $fireTempest;
+        $target->health -= (($this->magicalDamages + 30) - $target->defense);
         $this->mana -= 30;
+        echo "Fire Tempest !";
+        echo $target->name . " a perdu " . (($this->magicalDamages + 30) - $target->defense) . " points de vies" . PHP_EOL;
     }
 
-    public function phoenixFlame()
+    public function buff()
     {
         if($this->cooldown === 0){
             $this->defense += 20;

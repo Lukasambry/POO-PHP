@@ -12,7 +12,7 @@ class Paladin extends Character
         parent::__construct(
             'Uther the Lightbringer',
             health:110,
-            defense:25,
+            defense:17,
             physicalDamages:10,
             magicalDamages:10,
             mana:120,
@@ -24,23 +24,23 @@ class Paladin extends Character
 
     }
 
-    public function hammerofLight($target)
+    public function first($target)
     {
-        $this->physicalDamages = 25;
-        $target->health -= $this->physicalDamages;
+        $target->health -= ($this->physicalDamages + 25) - $target->defense;
         $this->mana -= 40;
         echo "Hammer of Light !\n";
+        echo $target->name . " a perdu " .  ($this->physicalDamages + 25) - $target->defense . " points de vies" . PHP_EOL;
     }
 
-    public function Judgement($target)
+    public function second($target)
     {
-        $this->physicalDamages = 10;
-        $target->health -= $this->physicalDamages * 3;
+        $target->health -= ($this->physicalDamages * 3 + 10) - $target->defense;
         $this->mana -= 60;
         echo "Judgement !\n";
+        echo $target->name . " a perdu " .  ($this->physicalDamages * 3 + 10) - $target->defense . " points de vies" . PHP_EOL;
     }
 
-    public function holyPrayer()
+    public function buff()
     {
         if($this->cooldown === 0){
             $this->defense += 15;
