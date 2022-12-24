@@ -18,7 +18,7 @@ class Archer extends Character
             defense: 9,
             physicalDamages: 12,
             magicalDamages: 0,
-            mana: 50,
+            mana: 100,
             exp: 0,
             level: 1,
             affinity: 2, //Wind
@@ -29,14 +29,18 @@ class Archer extends Character
     public function first($target)
     {
         if ($this->arrows <= 0) {
-            echo $this->name . " don't have any arrows left !\n";
+            echo $this->name . " N'a plus de flèche !\n" . PHP_EOL;
             $this->buff();
-            return $this->name . " use Focus !";
+            return $this->name . " utilise Focus !" . PHP_EOL;
+        } else if ($this->mana < 25) {
+            echo $this->name . " n'a pas assez de mana pour effectuer cette action..." . PHP_EOL;
+            echo $this->name . " utilise Rest et récupère 40 mana" . PHP_EOL;
+            $this->rest();
         } else {
             $target->health -= (($this->physicalDamages + 12) - $target->defense);
             $this->mana -= 25;
             $this->arrows -= 1;
-            echo "Arcane Shot !\n";
+            echo $this->name . " utilise Arcane Shot !" . PHP_EOL;
             echo $target->name . " a perdu " . (($this->physicalDamages + 12) - $target->defense) . " points de vies" . PHP_EOL;
         }
     }
@@ -44,14 +48,18 @@ class Archer extends Character
     public function second($target)
     {
         if ($this->arrows <= 0) {
-            echo $this->name . " don't have any arrows left !\n";
+            echo $this->name . " don't have any arrows left !" . PHP_EOL;
             $this->buff();
-            return $this->name . " use Focus !";
-        } else {
+            return $this->name . " utilise Focus !" . PHP_EOL;
+        } else if ($this->mana < 60) {
+            echo $this->name . " n'a pas assez de mana pour effectuer cette action..." . PHP_EOL;
+            echo $this->name . " utilise Rest et récupère 40 mana" . PHP_EOL;
+            $this->rest();
+        } {
             $target->health -= (($this->physicalDamages + 25) - $target->defense);
             $this->mana -= 60;
             $this->arrows -= 1;
-            echo "Triple Shot ! \n";
+            echo $this->name . " utilise Triple Shot ! \n" . PHP_EOL;
             echo $target->name . " a perdu " . (($this->physicalDamages + 25) - $target->defense) . " points de vies" . PHP_EOL;
         }
     }

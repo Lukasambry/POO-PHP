@@ -55,21 +55,88 @@ $paladin->giveWeapon($hammer);
 
 
 echo $you->getName() . " vs " . $enemy->getName() . PHP_EOL;
-echo "Le combat va commencer !" . PHP_EOL;
+sleep(1);
+echo "\n";
+echo "Le combat va commencer dans ..." . PHP_EOL;
+sleep(1);
+echo "3" . PHP_EOL;
+sleep(1);
+echo "2" . PHP_EOL;
+sleep(1);
+echo "1" . PHP_EOL;
+sleep(1);
+echo "\n";
 
-
+$alive = true;
+$i = 1;
 do {
 
-    if(rand(1,2) == 1){
-        $you->first($enemy);
-    }else {
-        $you->second($enemy);
+    echo "---------- Round " . $i . "----------" . PHP_EOL;
+    echo "\n";
+    $i++;
+
+    sleep(1);
+
+    if ($you->getHealth() <= 30) {
+        $you->sleep();
+        echo "Vos points de vies sont faible, vous utiliser Sleep" . PHP_EOL;
+        sleep(1);
+    } else {
+        if (rand(1, 2) == 1) {
+            $you->first($enemy);
+            sleep(1);
+            $you->levelUp();
+            echo "\n";
+        } else {
+            $you->second($enemy);
+            sleep(1);
+            $you->levelUp();
+            echo "\n";
+        }
     }
 
+    echo "\n";
 
-    // $enemy->levelUp();
-    // $you->levelUp();
-} while ($you->isAlive() == false || $enemy->isAlive() == false);
+    sleep(1);
+
+    if ($enemy->getHealth() <= 30) {
+        $enemy->sleep();
+        echo "Les points de vies de " . $enemy->getName() .  " sont failbe, il utilise Sleep" . PHP_EOL;
+        sleep(1);
+    } else {
+        if (rand(1, 2) == 1) {
+            $enemy->first($you);
+            sleep(1);
+            $enemy->levelUp();
+            sleep(1);
+            echo "\n";
+        } else {
+            $enemy->second($you);
+            sleep(1);
+            $enemy->levelUp();
+            sleep(1);
+            echo "\n";
+        }
+    }
+
+    sleep(1);
+
+
+    echo "Vous (" . $you->getName() . ")" . " : " . $you->getHealth() . " Hp" . PHP_EOL;
+    echo "Enemy (" . $enemy->getName() . ")" . " : " . $enemy->getHealth() . " Hp" . PHP_EOL;
+
+    echo "\n";
+
+    if ($enemy->getHealth() <= 0) {
+        echo $enemy->getName() . " est mort..." . PHP_EOL;
+        $alive = false;
+    } else if ($you->getHealth() <= 0) {
+        $alive = false;
+        echo "Vous avez succombé de vos blessures..." . PHP_EOL;
+    }
+
+    sleep(1);
+} while ($alive);
 
 
 

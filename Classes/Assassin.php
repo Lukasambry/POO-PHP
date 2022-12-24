@@ -15,7 +15,7 @@ class Assassin extends Character
             'Illidan Stormrage',
             health: 90,
             defense: 9,
-            physicalDamages: 20,
+            physicalDamages: 14,
             magicalDamages: 0,
             mana: 90,
             exp: 0,
@@ -27,18 +27,30 @@ class Assassin extends Character
 
     public function first($target)
     {
-        $target->health -= ($this->physicalDamages + 30) - $target->defense;
-        $this->mana -= 45;
-        echo "Ambush !\n";
-        echo $target->name . ' a perdu ' . ($this->physicalDamages + 30) - $target->defense . " points de vies" . PHP_EOL;
+        if ($this->mana < 45) {
+            echo $this->name . " n'a pas assez de mana pour effectuer cette action..." . PHP_EOL;
+            echo $this->name . " utilise Rest et récupère 40 mana" . PHP_EOL;
+            $this->rest();
+        } else {
+            $target->health -= ($this->physicalDamages + 14) - $target->defense;
+            $this->mana -= 45;
+            echo $this->name . " utilise Ambush !" . PHP_EOL;
+            echo $target->name . ' a perdu ' . ($this->physicalDamages + 14) - $target->defense . " points de vies" . PHP_EOL;
+        }
     }
 
     public function second($target)
     {
-        $target->health -= (($this->physicalDamages + 20) - $target->defense);
-        $this->mana -= 30;
-        echo "Eviserate !\n";
-        echo $target->name . ' a perdu ' . (($this->physicalDamages + 20) - $target->defense) . " points de vies" . PHP_EOL;
+        if ($this->mana < 30) {
+            echo $this->name . " n'a pas assez de mana pour effectuer cette action..." . PHP_EOL;
+            echo $this->name . " utilise Rest et récupère 40 mana" . PHP_EOL;
+            $this->rest();
+        } else {
+            $target->health -= (($this->physicalDamages + 15) - $target->defense);
+            $this->mana -= 30;
+            echo $this->name . " utilise Eviserate !" . PHP_EOL;
+            echo $target->name . ' a perdu ' . (($this->physicalDamages + 15) - $target->defense) . " points de vies" . PHP_EOL;
+        }
     }
 
     public function buff()

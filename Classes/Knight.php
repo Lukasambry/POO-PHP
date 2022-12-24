@@ -17,7 +17,7 @@ class Knight extends Character
             defense: 15,
             physicalDamages: 10,
             magicalDamages: 0,
-            mana: 30,
+            mana: 100,
             exp: 0,
             level: 1,
             affinity: 0,
@@ -27,18 +27,32 @@ class Knight extends Character
 
     public function first($target)
     {
-        $target->health -= ($this->physicalDamages + 25) - $target->defense;
-        $this->mana -= 60;
-        echo "Water Slash !\n";
-        echo $target->name . " a perdu " . (($this->physicalDamages + 20) - $target->defense) . " points de vies" . PHP_EOL;
+        if ($this->mana < 60) {
+            echo $this->name . " n'a pas assez de mana pour effectuer cette action..." . PHP_EOL;
+            echo $this->name . " utilise Rest et récupère 40 mana" . PHP_EOL;
+            $this->rest();
+        } else {
+            $target->health -= ($this->physicalDamages + 20) - $target->defense;
+            $this->mana -= 60;
+            echo $this->name . " utilise Water Slash !" . PHP_EOL;
+            echo $target->name . " a perdu " . (($this->physicalDamages + 20) - $target->defense) . " points de vies" . PHP_EOL;
+        }
     }
 
     public function second($target)
     {
-        $target->health -= (($this->physicalDamages + rand(20, 30)) - $target->defense);
-        $this->mana -= 40;
-        echo "Slice !\n";
-        echo $target->name . " a perdu " . (($this->physicalDamages + rand(20, 30)) - $target->defense) . " points de vies" . PHP_EOL;
+
+        if ($this->mana < 40) {
+            echo $this->name . " n'a pas assez de mana pour effectuer cette action..." . PHP_EOL;
+            echo $this->name . " utilise Rest et récupère 40 mana" . PHP_EOL;
+            $this->rest();
+        } else {
+            $random = rand(20, 30);
+            $target->health -= (($this->physicalDamages + $random) - $target->defense);
+            $this->mana -= 40;
+            echo $this->name . " utilise Slice !" . PHP_EOL;
+            echo $target->name . " a perdu " . (($this->physicalDamages + $random) - $target->defense) . " points de vies" . PHP_EOL;
+        }
     }
 
     public function buff()

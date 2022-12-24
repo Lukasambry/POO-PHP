@@ -121,24 +121,35 @@ abstract class Character implements GlobalSkills
         $target->takesDamages($this->getPhysicalDamages(), $this->getMagicalDamages()); //Target takes damages
     }
 
-    public function isAlive(): bool
+    public function isAlive($me, $enemy): bool
     {
-        return $this->health > 0; //Check if alive
+        if ($me->health <= 0) {
+            echo $me->name . " est mort..." . PHP_EOL;
+            echo $enemy->name . " est donc le grand vainqueur !" . PHP_EOL;
+            return false;
+        } else {
+            return true;
+        }
+        if ($enemy->health <= 0) {
+            echo $enemy->name . " est mort..." . PHP_EOL;
+            echo $me->name . " est donc le grand vainqueur !" . PHP_EOL;
+            return false;
+        } else {
+            return true;
+        }
     }
 
 
     public function rest(): void
     {
-        $this->mana += 10; //Restores 10 mana
-        echo ("You restored 10 mana\n");
+        $this->mana += 40; //Restores 10 mana
     }
 
 
     public function sleep(): void
     {
         $this->mana -= 5; //Consume 5 mana
-        $this->health += 10; //and restore 10 health
-        echo ("You lost 5 mana and restored 10 health\n");
+        $this->health += 30; //and restore 10 health
     }
 
     public function levelUp(): void //Level up function
@@ -152,9 +163,9 @@ abstract class Character implements GlobalSkills
             echo ($this->name . " has level up !\n");
             echo $this->name . " is now level " .  $this->level  . PHP_EOL;
         } else {
-            $expGain = rand(10, 29);
+            $expGain = rand(50, 99);
             echo ($this->name . ' a gagner ' . $expGain . " exp") . PHP_EOL;
-            $this->exp +  $expGain;
+            $this->exp = $this->exp + $expGain;
         }
     }
 
