@@ -241,23 +241,6 @@ abstract class Character implements GlobalSkills
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // public function affinityCheck($myAbility,$targetAffinity)
     // {
 
@@ -384,3 +367,15 @@ abstract class Character implements GlobalSkills
     //             break;
     //     }
     // }
+            default:
+                return false;
+                break;
+        }
+    }
+    public function checkMana($needMana) {
+        if($this->mana < $needMana) {
+            echo("You lack ". ($needMana-$this->mana)  ." mana to perform this action\n");
+            return false;
+        } else return true;
+    } 
+}
