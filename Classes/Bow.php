@@ -10,7 +10,7 @@ class Bow extends PhysicalWeapon
         public string $name = "Thori'dal, the Stars' Fury",
         public string $description = "Thori'dal, the Stars' Fury is a legendary bow of mysterious origins, infused with power from the Sunwell.",
         public int $type = 0,
-        public int $damage = 20,
+        public int $damage = 17,
       ) {}
 }
 

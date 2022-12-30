@@ -17,7 +17,7 @@ class Paladin extends Character
             defense:15,
             physicalDamages:10,
             magicalDamages:10,
-            mana:120,
+            mana:100,
             exp:0,
             level:1,
             affinity:3, //Light
@@ -40,7 +40,7 @@ class Paladin extends Character
     }
 
     public function manaCostSecondSkill(): int {
-        return 60;
+        return 50;
     }
 
     public function manaCostBuff(): int {
@@ -50,37 +50,35 @@ class Paladin extends Character
     public function first($target)
     {
         if((($this->physicalDamages + 12) - $target->defense) > 0){
-            $target->health -= ($this->physicalDamages + 12) - $target->defense;
-            echo $this->name . " utilise Hammer of Light !" . PHP_EOL;
+            $target->health -= ($this->physicalDamages + 12 + $this->magicalDamages) - $target->defense;
+            echo $this->name . " use Hammer of Light !" . PHP_EOL;
             $this->mana -= 40;
-            echo $target->name . " a perdu " .  ($this->physicalDamages + 12) - $target->defense . " points de vies" . PHP_EOL;
+            echo $target->name . " lost " .  ($this->physicalDamages + 12 + $this->magicalDamages) - $target->defense . " life points" . PHP_EOL;
         }else {
-            echo $target->name . ' a perdu ' . "0 points de vies" . PHP_EOL;
+            echo $target->name . ' lost ' . "0 life points" . PHP_EOL;
         }
     }
 
     public function second($target)
     {
-        if((($this->physicalDamages + 10) - $target->defense) > 0){
-            $target->health -= ($this->physicalDamages + 10) - $target->defense;
-            $this->mana -= 60;
-            echo $this->name . " utilise Judgement !" . PHP_EOL;
-            echo $target->name . " a perdu " .  ($this->physicalDamages + 10) - $target->defense . " points de vies" . PHP_EOL;
+        if((($this->physicalDamages + 16 + ($this->magicalDamages + 4)) - $target->defense) > 0){
+            $target->health -= ($this->physicalDamages + 16 + ($this->magicalDamages + 4)) - $target->defense;
+            $this->mana -= 50;
+            echo $this->name . " use Judgement !" . PHP_EOL;
+            echo $target->name . " lost " .  ($this->physicalDamages + 16 + ($this->magicalDamages + 4)) - $target->defense . " life points" . PHP_EOL;
         }else {
-            echo $target->name . ' a perdu ' . "0 points de vies" . PHP_EOL;
+            echo $target->name . ' lost ' . "0 life points" . PHP_EOL;
         } 
     }
 
     public function buff()
     {
         if ($this->cooldown === 0) {
-            $this->defense += 50;
-            $this->physicalDamages -= 25;
+            $this->defense += 35;
             echo "Holy Prayer !\n" . PHP_EOL;
-            echo $this->name . " stats increased and decreased for 2 turns!" . PHP_EOL;
+            echo $this->name . " stats increased for 2 turns!" . PHP_EOL;
             echo "\n";
-            echo "Defense : " . $this->defense . "(+" . "50)" . PHP_EOL;
-            echo "Physical Damage : " . $this->physicalDamages . "(-" . "25)" . PHP_EOL;
+            echo "Defense : " . $this->defense . "(+" . "35)" . PHP_EOL;
             $this->mana -= 50;
             $this->cooldown++;
         } else if ($this->cooldown === 1) {
@@ -89,8 +87,7 @@ class Paladin extends Character
         } else if ($this->cooldown === 2) {
             echo 'Holy Prayer is finished' . PHP_EOL;
             $this->cooldown = 0;
-            $this->defense -= 50;
-            $this->physicalDamages += 25;
+            $this->defense -= 35;
         }
     }
 

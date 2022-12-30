@@ -52,12 +52,12 @@ class Assassin extends Character
     public function first($target)
     {
             $this->mana -= 45;
-            echo $this->name . " utilise Ambush !" . PHP_EOL;
+            echo $this->name . " use Ambush !" . PHP_EOL;
             if((($this->physicalDamages + 14) - $target->defense) > 0){
-                echo $target->name . ' a perdu ' . ($this->physicalDamages + 14) - $target->defense . " points de vies" . PHP_EOL;
+                echo $target->name . ' lost ' . ($this->physicalDamages + 14) - $target->defense . " life points" . PHP_EOL;
                 $target->health -= ($this->physicalDamages + 14) - $target->defense;
             } else {
-                echo $target->name . ' a perdu ' . "0 points de vies" . PHP_EOL;
+                echo $target->name . ' lost ' . "0 life points" . PHP_EOL;
             }
             
     }
@@ -65,12 +65,12 @@ class Assassin extends Character
     public function second($target)
     {
         $this->mana -= 30;
-        echo $this->name . " utilise Eviserate !" . PHP_EOL;
-        if((($this->physicalDamages + 15) - $target->defense) > 0){
-            $target->health -= (($this->physicalDamages + 15) - $target->defense);
-            echo $target->name . ' a perdu ' . (($this->physicalDamages + 15) - $target->defense) . " points de vies" . PHP_EOL;
+        echo $this->name . " use Eviserate !" . PHP_EOL;
+        if((($this->physicalDamages + 20) - $target->defense) > 0){
+            $target->health -= (($this->physicalDamages + 20) - $target->defense);
+            echo $target->name . ' lost ' . (($this->physicalDamages + 20) - $target->defense) . " life points" . PHP_EOL;
         } else {
-            echo $target->name . ' a perdu ' . "0 points de vies" . PHP_EOL;
+            echo $target->name . ' lost ' . "0 life points" . PHP_EOL;
         }      
     }
 
@@ -78,13 +78,13 @@ class Assassin extends Character
     {
         if ($this->cooldown === 0) {
             $this->physicalDamages += 10;
-            $this->defense +=10;
-            $this->health +=10;
+            $this->defense += 8;
+            $this->health += 10;
             $this->mana -= 20;
             echo "Stealth !\n" . PHP_EOL;
             echo $this->name . " stats increased for 2 turns!" . PHP_EOL;
             echo "\n";
-            echo "Defense : " . $this->defense . "(\e[33m+" . "10\e[39m)" . PHP_EOL;
+            echo "Defense : " . $this->defense . "(\e[33m+" . "8\e[39m)" . PHP_EOL;
             echo "Health : " . $this->health . "(\e[31m+" . "10\e[39m)" . PHP_EOL;
             echo "Physical Damage : " . $this->physicalDamages . "(+" . "10)" . PHP_EOL;
             $this->cooldown++;
@@ -95,8 +95,8 @@ class Assassin extends Character
             echo 'Stealth is finished' . PHP_EOL;
             $this->cooldown = 0;
             $this->physicalDamages -= 10;
-            $this->defense -=10;
-            $this->health -=10;
+            $this->defense -= 8;
+            $this->health -= 10;
         }
     }
 }

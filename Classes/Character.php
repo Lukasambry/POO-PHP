@@ -158,14 +158,15 @@ abstract class Character implements GlobalSkills
 
     public function levelUp(): void //Level up function
     {
-        $expGain = rand(50, 99);
+        $defGain = rand(1, 3);
+        $expGain = rand(30, 75);
         echo ($this->name . ' a gagner ' . $expGain . " exp") . PHP_EOL;
         $this->exp = $this->exp + $expGain;
         echo "\n";
         if ($this->exp >= 100) {
             $this->level++;
             $this->health += 10;
-            $this->defense += 10;
+            $this->defense += $defGain;
             $this->mana += 10;
             $this->physicalDamages += 3;
             $this->magicalDamages += 5;
@@ -177,7 +178,7 @@ abstract class Character implements GlobalSkills
             sleep(1);
             echo "\n";
             echo "Health : " . $this->health . "(+10)". PHP_EOL;
-            echo "Defense : " . $this->defense . "(+10)". PHP_EOL;
+            echo "Defense : " . $this->defense . "+(". $defGain . ")" . PHP_EOL;
             echo "Mana : " . $this->mana . "(+10)". PHP_EOL;
             echo "Physical damage : " . $this->physicalDamages . "(+3)". PHP_EOL;
             echo "Magical damage : " . $this->magicalDamages . "(+5)". PHP_EOL;
