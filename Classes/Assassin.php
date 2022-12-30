@@ -25,45 +25,59 @@ class Assassin extends Character
         );
     }
 
+    public function getFirstSkillName():string {
+        return "Ambush";
+    }
+
+    public function getSecondSkillName():string {
+        return "Eviserate";
+    }
+
+    public function getBuffName():string {
+        return "Stealth";
+    }
+
+    public function manaCostFirstSkill(): int {
+        return 40;
+    }
+
+    public function manaCostSecondSkill(): int {
+        return 50;
+    }
+
+    public function manaCostBuff(): int {
+        return 20;
+    }
+
     public function first($target)
     {
-        if ($this->mana < 45) {
-            echo $this->name . " n'a pas assez de mana pour effectuer cette action..." . PHP_EOL;
-            echo $this->name . " utilise Rest et récupère 40 mana" . PHP_EOL;
-            $this->rest();
-        } else {
             $target->health -= ($this->physicalDamages + 14) - $target->defense;
             $this->mana -= 45;
             echo $this->name . " utilise Ambush !" . PHP_EOL;
             echo $target->name . ' a perdu ' . ($this->physicalDamages + 14) - $target->defense . " points de vies" . PHP_EOL;
-        }
     }
 
     public function second($target)
     {
-        if ($this->mana < 30) {
-            echo $this->name . " n'a pas assez de mana pour effectuer cette action..." . PHP_EOL;
-            echo $this->name . " utilise Rest et récupère 40 mana" . PHP_EOL;
-            $this->rest();
-        } else {
             $target->health -= (($this->physicalDamages + 15) - $target->defense);
             $this->mana -= 30;
             echo $this->name . " utilise Eviserate !" . PHP_EOL;
             echo $target->name . ' a perdu ' . (($this->physicalDamages + 15) - $target->defense) . " points de vies" . PHP_EOL;
-        }
     }
 
     public function buff()
     {
         if ($this->cooldown === 0) {
             $this->physicalDamages += 10;
-            if (luck(10)) {
-                $this->physicalDamages *= 2;
-                echo ("Dodge" . PHP_EOL); //cf Ticket Trello
-                return 1;
-            }
+            $this->defense +=10;
+            $this->health +=10;
             $this->mana -= 20;
             echo "Stealth !\n" . PHP_EOL;
+            echo $this->name . " stats increased for 2 turns!" . PHP_EOL;
+            echo "\n";
+            echo "Defense : " . $this->defense . "(+" . "10)" . PHP_EOL;
+            echo "Health : " . $this->health . "(+" . "10)" . PHP_EOL;
+            echo "Physical Damage : " . $this->physicalDamages . "(+" . "10)" . PHP_EOL;
             $this->cooldown++;
         } else if ($this->cooldown === 1) {
             $this->cooldown++;
@@ -72,16 +86,8 @@ class Assassin extends Character
             echo 'Stealth is finished' . PHP_EOL;
             $this->cooldown = 0;
             $this->physicalDamages -= 10;
-        }
-    }
-
-    public function checkCooldown($target)
-    {
-        if ($target->cooldown != 0) {
-            $target->stealth(); // if true, the cooldown is active and need incrementation
-            return false;
-        } else if ($target->cooldown == 0) {
-            return true;
+            $this->defense -=10;
+            $this->health -=10;
         }
     }
 }

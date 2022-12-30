@@ -25,42 +25,55 @@ class Knight extends Character
         );
     }
 
+
+    public function getFirstSkillName():string {
+        return "Water Slash";
+    }
+    public function getSecondSkillName():string {
+        return "Slice";
+    }
+    public function getBuffName():string {
+        return "Parade";
+    }
+
+    public function manaCostFirstSkill(): int {
+        return 60;
+    }
+
+    public function manaCostSecondSkill(): int {
+        return 40;
+    }
+
+    public function manaCostBuff(): int {
+        return 25;
+    }
+
     public function first($target)
     {
-        if ($this->mana < 60) {
-            echo $this->name . " n'a pas assez de mana pour effectuer cette action..." . PHP_EOL;
-            echo $this->name . " utilise Rest et récupère 40 mana" . PHP_EOL;
-            $this->rest();
-        } else {
             $target->health -= ($this->physicalDamages + 20) - $target->defense;
             $this->mana -= 60;
             echo $this->name . " utilise Water Slash !" . PHP_EOL;
             echo $target->name . " a perdu " . (($this->physicalDamages + 20) - $target->defense) . " points de vies" . PHP_EOL;
-        }
     }
 
     public function second($target)
     {
-
-        if ($this->mana < 40) {
-            echo $this->name . " n'a pas assez de mana pour effectuer cette action..." . PHP_EOL;
-            echo $this->name . " utilise Rest et récupère 40 mana" . PHP_EOL;
-            $this->rest();
-        } else {
             $random = rand(20, 30);
             $target->health -= (($this->physicalDamages + $random) - $target->defense);
             $this->mana -= 40;
             echo $this->name . " utilise Slice !" . PHP_EOL;
             echo $target->name . " a perdu " . (($this->physicalDamages + $random) - $target->defense) . " points de vies" . PHP_EOL;
-        }
     }
 
     public function buff()
     {
         if ($this->cooldown === 0) {
-            $this->defense += 10;
+            $this->defense += 20;
             $this->mana -= 25;
             echo "Parade !\n" . PHP_EOL;
+            echo $this->name . " defense increased for 2 turns!" . PHP_EOL;
+            echo "\n";
+            echo "Defense : " . $this->defense . "(+" . "20)" . PHP_EOL;
             $this->cooldown++;
         } else if ($this->cooldown === 1) {
             $this->cooldown++;
@@ -68,7 +81,7 @@ class Knight extends Character
         } else if ($this->cooldown === 2) {
             echo 'Parade is finished' . PHP_EOL;
             $this->cooldown = 0;
-            $this->defense -= 10;
+            $this->defense -= 20;
         }
     }
 
@@ -77,13 +90,4 @@ class Knight extends Character
 
     //En gros, si le cooldown est différent de 0, ça veut dire que Parade a était lancer dans tout les cas
     //$knight->checkCooldown
-    public function checkCooldown($target)
-    {
-        if ($target->cooldown != 0) {
-            $target->parade(); // if true, the cooldown is active and need incrementation
-            return false;
-        } else if ($target->cooldown == 0) {
-            return true;
-        }
-    }
 }

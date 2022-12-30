@@ -139,37 +139,62 @@ abstract class Character implements GlobalSkills
         }
     }
 
-
     public function rest(): void
     {
         $this->mana += 40; //Restores 10 mana
+        echo "You have recovered 40 mana points." . PHP_EOL;
+        echo "\n";
     }
 
 
     public function sleep(): void
     {
-        $this->mana -= 5; //Consume 5 mana
-        $this->health += 30; //and restore 10 health
+        $this->mana -= 15; //Consume 5 mana
+        $this->health += 35; //and restore 30 health
+        echo $this->name . " recovered 35 hp" . PHP_EOL;
+        echo "\n";
+
     }
 
     public function levelUp(): void //Level up function
     {
+        $expGain = rand(50, 99);
+        echo ($this->name . ' a gagner ' . $expGain . " exp") . PHP_EOL;
+        $this->exp = $this->exp + $expGain;
+        echo "\n";
         if ($this->exp >= 100) {
             $this->level++;
             $this->health += 10;
             $this->defense += 10;
             $this->mana += 10;
+            $this->physicalDamages += 3;
+            $this->magicalDamages += 5;
             $this->exp = 0;
-            echo ($this->name . " has level up !\n");
+            echo ($this->name . " has level up !\n") . PHP_EOL;
+            sleep(1);
+            echo "\n";
             echo $this->name . " is now level " .  $this->level  . PHP_EOL;
-        } else {
-            $expGain = rand(50, 99);
-            echo ($this->name . ' a gagner ' . $expGain . " exp") . PHP_EOL;
-            $this->exp = $this->exp + $expGain;
+            sleep(1);
+            echo "\n";
+            echo "Health : " . $this->health . "(+10)". PHP_EOL;
+            echo "Defense : " . $this->defense . "(+10)". PHP_EOL;
+            echo "Mana : " . $this->mana . "(+10)". PHP_EOL;
+            echo "Physical damage : " . $this->physicalDamages . "(+3)". PHP_EOL;
+            echo "Magical damage : " . $this->magicalDamages . "(+5)". PHP_EOL;
+            echo "\n";
+            
         }
     }
 
-
+    public function checkIfManaIsAvailable($cost, $current) {
+        if($cost > $current){
+            echo "You didn't have enough mana to perform this action." . PHP_EOL;
+            echo "\n";
+            return false;
+        } else if($cost <= $current){
+            return true;
+        }
+    }
 
     public function giveWeapon(?Weapon $weapon): void
     {
@@ -181,6 +206,29 @@ abstract class Character implements GlobalSkills
             $this->physicalDamages += $weapon->damage;
         } else {
             $this->magicalDamages += $weapon->damage;
+        }
+    }
+
+    public function buffInProgress() {
+        if($this->cooldown == 0){
+            return false;
+        }
+        if($this->cooldown > 0){
+            return true;
+        }
+    }
+
+    public function addMana($value){
+        $this->mana += $value;
+    }
+
+    public function incCooldown(): void
+    {
+        if ($this->cooldown != 0){
+            $this->buff();
+            echo "\n";
+        } else {
+            echo "Nothing is active at the moment";
         }
     }
 

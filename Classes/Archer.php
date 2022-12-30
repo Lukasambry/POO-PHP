@@ -26,17 +26,35 @@ class Archer extends Character
         );
     }
 
+    public function getFirstSkillName():string {
+        return "Arcane Shot";
+    }
+    public function getSecondSkillName():string {
+        return "Triple Shot";
+    }
+    public function getBuffName():string {
+        return "Focus";
+    }
+
+    public function manaCostFirstSkill(): int {
+        return 25;
+    }
+
+    public function manaCostSecondSkill(): int {
+        return 60;
+    }
+
+    public function manaCostBuff(): int {
+        return 40;
+    }
+
     public function first($target)
     {
         if ($this->arrows <= 0) {
             echo $this->name . " N'a plus de flèche !\n" . PHP_EOL;
             $this->buff();
             return $this->name . " utilise Focus !" . PHP_EOL;
-        } else if ($this->mana < 25) {
-            echo $this->name . " n'a pas assez de mana pour effectuer cette action..." . PHP_EOL;
-            echo $this->name . " utilise Rest et récupère 40 mana" . PHP_EOL;
-            $this->rest();
-        } else {
+        }else {
             $target->health -= (($this->physicalDamages + 12) - $target->defense);
             $this->mana -= 25;
             $this->arrows -= 1;
@@ -51,11 +69,7 @@ class Archer extends Character
             echo $this->name . " don't have any arrows left !" . PHP_EOL;
             $this->buff();
             return $this->name . " utilise Focus !" . PHP_EOL;
-        } else if ($this->mana < 60) {
-            echo $this->name . " n'a pas assez de mana pour effectuer cette action..." . PHP_EOL;
-            echo $this->name . " utilise Rest et récupère 40 mana" . PHP_EOL;
-            $this->rest();
-        } {
+        } else {
             $target->health -= (($this->physicalDamages + 25) - $target->defense);
             $this->mana -= 60;
             $this->arrows -= 1;
@@ -69,14 +83,15 @@ class Archer extends Character
         if ($this->cooldown === 0) {
             $this->mana -= 40;
             $this->arrows += 5;
-
-            if (luck(40)) {
-                echo ("Dodge" . PHP_EOL); //cf Ticket Trello
-                return 1;
-            }
-            return parent::getDefense();
-
+            $this->physicalDamages += 15;
+            $this->defense += 8;
             echo "Focus !\n" . PHP_EOL;
+            echo $this->name . " stats increased for 2 turns!" . PHP_EOL;
+            echo "\n";
+            echo "Defense : " . $this->defense . "(+" . "8)" . PHP_EOL;
+            echo "Arrow : " . $this->arrows . "(+" . "5)" . PHP_EOL;
+            echo "Physical Damage : " . $this->physicalDamages . "(+" . "15)" . PHP_EOL;
+            return parent::getDefense();
             $this->cooldown++;
         } else if ($this->cooldown === 1) {
             $this->cooldown++;
@@ -84,17 +99,8 @@ class Archer extends Character
         } else if ($this->cooldown === 2) {
             echo 'Focus skill is finished.' . PHP_EOL;
             $this->cooldown = 0;
-            $this->defense -= 10;
-        }
-    }
-
-    public function checkCooldown($target)
-    {
-        if ($target->cooldown != 0) {
-            $target->focus(); // if true, the cooldown is active and need incrementation
-            return false;
-        } else if ($target->cooldown == 0) {
-            return true;
+            $this->defense -= 8;
+            $this->physicalDamages -= 15;
         }
     }
 }
