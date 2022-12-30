@@ -55,11 +55,15 @@ class Archer extends Character
             $this->buff();
             return $this->name . " utilise Focus !" . PHP_EOL;
         }else {
-            $target->health -= (($this->physicalDamages + 12) - $target->defense);
+            echo $this->name . " utilise Arcane Shot !" . PHP_EOL;
             $this->mana -= 25;
             $this->arrows -= 1;
-            echo $this->name . " utilise Arcane Shot !" . PHP_EOL;
             echo $target->name . " a perdu " . (($this->physicalDamages + 12) - $target->defense) . " points de vies" . PHP_EOL;
+            if((($this->physicalDamages + 12) - $target->defense) > 0){
+                $target->health -= (($this->physicalDamages + 12) - $target->defense);
+            } else {
+                echo $target->name . ' a perdu ' . "0 points de vies" . PHP_EOL;
+            } 
         }
     }
 
@@ -70,11 +74,15 @@ class Archer extends Character
             $this->buff();
             return $this->name . " utilise Focus !" . PHP_EOL;
         } else {
-            $target->health -= (($this->physicalDamages + 25) - $target->defense);
             $this->mana -= 60;
             $this->arrows -= 1;
             echo $this->name . " utilise Triple Shot ! \n" . PHP_EOL;
-            echo $target->name . " a perdu " . (($this->physicalDamages + 25) - $target->defense) . " points de vies" . PHP_EOL;
+            if((($this->physicalDamages + 25) - $target->defense) > 0){
+                $target->health -= (($this->physicalDamages + 25) - $target->defense);
+                echo $target->name . " a perdu " . (($this->physicalDamages + 25) - $target->defense) . " points de vies" . PHP_EOL;
+            }else {
+                echo $target->name . ' a perdu ' . "0 points de vies" . PHP_EOL;
+            } 
         }
     }
 

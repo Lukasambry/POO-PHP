@@ -50,19 +50,27 @@ class Knight extends Character
 
     public function first($target)
     {
+        if((($this->physicalDamages + 20) - $target->defense) > 0){
+            echo $this->name . " utilise Water Slash !" . PHP_EOL;
             $target->health -= ($this->physicalDamages + 20) - $target->defense;
             $this->mana -= 60;
-            echo $this->name . " utilise Water Slash !" . PHP_EOL;
             echo $target->name . " a perdu " . (($this->physicalDamages + 20) - $target->defense) . " points de vies" . PHP_EOL;
+        } else {
+            echo $target->name . ' a perdu ' . "0 points de vies" . PHP_EOL;
+        } 
     }
 
     public function second($target)
     {
-            $random = rand(20, 30);
-            $target->health -= (($this->physicalDamages + $random) - $target->defense);
-            $this->mana -= 40;
+        if((($this->physicalDamages + $random) - $target->defense) > 0){
             echo $this->name . " utilise Slice !" . PHP_EOL;
+            $random = rand(20, 30);
+            $this->mana -= 40;
+            $target->health -= (($this->physicalDamages + $random) - $target->defense);
             echo $target->name . " a perdu " . (($this->physicalDamages + $random) - $target->defense) . " points de vies" . PHP_EOL;
+        }else {
+            echo $target->name . ' a perdu ' . "0 points de vies" . PHP_EOL;
+        }     
     }
 
     public function buff()

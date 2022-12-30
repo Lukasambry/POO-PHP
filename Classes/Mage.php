@@ -50,18 +50,26 @@ class Mage extends Character
 
     public function first($target)
     {
-        $target->health -= (($this->magicalDamages + 11) - ($target->defense));
-        $this->mana -= 45;
-        echo $this->name . " utilise Meteor !" . PHP_EOL;
-        echo $target->name . " a perdu " . (($this->magicalDamages + 11) - ($target->defense)) . " points de vies" . PHP_EOL;
+        if((($this->magicalDamages + 11) - ($target->defense)) > 0){
+            $target->health -= (($this->magicalDamages + 11) - ($target->defense));
+            $this->mana -= 45;
+            echo $this->name . " utilise Meteor !" . PHP_EOL;
+            echo $target->name . " a perdu " . (($this->magicalDamages + 11) - ($target->defense)) . " points de vies" . PHP_EOL;
+        }else {
+            echo $target->name . ' a perdu ' . "0 points de vies" . PHP_EOL;
+        }   
     }
 
     public function second($target)
     {
-        $target->health -= (($this->magicalDamages + 13) - $target->defense);
-        $this->mana -= 30;
-        echo $this->name . " utilise Fire Tempest !" . PHP_EOL;
-        echo $target->name . " a perdu " . (($this->magicalDamages + 13) - $target->defense) . " points de vies" . PHP_EOL;
+        if((($this->magicalDamages + 13) - $target->defense) > 0){
+            $target->health -= (($this->magicalDamages + 13) - $target->defense);
+            echo $this->name . " utilise Fire Tempest !" . PHP_EOL;
+            $this->mana -= 30;
+            echo $target->name . " a perdu " . (($this->magicalDamages + 13) - $target->defense) . " points de vies" . PHP_EOL;
+        }else {
+            echo $target->name . ' a perdu ' . "0 points de vies" . PHP_EOL;
+        }  
     }
 
     public function buff()

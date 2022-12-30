@@ -49,18 +49,26 @@ class Paladin extends Character
 
     public function first($target)
     {
-        $target->health -= ($this->physicalDamages + 12) - $target->defense;
-        $this->mana -= 40;
-        echo $this->name . " utilise Hammer of Light !" . PHP_EOL;
-        echo $target->name . " a perdu " .  ($this->physicalDamages + 12) - $target->defense . " points de vies" . PHP_EOL;
+        if((($this->physicalDamages + 12) - $target->defense) > 0){
+            $target->health -= ($this->physicalDamages + 12) - $target->defense;
+            echo $this->name . " utilise Hammer of Light !" . PHP_EOL;
+            $this->mana -= 40;
+            echo $target->name . " a perdu " .  ($this->physicalDamages + 12) - $target->defense . " points de vies" . PHP_EOL;
+        }else {
+            echo $target->name . ' a perdu ' . "0 points de vies" . PHP_EOL;
+        }
     }
 
     public function second($target)
     {
-        $target->health -= ($this->physicalDamages + 10) - $target->defense;
-        $this->mana -= 60;
-        echo $this->name . " utilise Judgement !" . PHP_EOL;
-        echo $target->name . " a perdu " .  ($this->physicalDamages + 10) - $target->defense . " points de vies" . PHP_EOL;
+        if((($this->physicalDamages + 10) - $target->defense) > 0){
+            $target->health -= ($this->physicalDamages + 10) - $target->defense;
+            $this->mana -= 60;
+            echo $this->name . " utilise Judgement !" . PHP_EOL;
+            echo $target->name . " a perdu " .  ($this->physicalDamages + 10) - $target->defense . " points de vies" . PHP_EOL;
+        }else {
+            echo $target->name . ' a perdu ' . "0 points de vies" . PHP_EOL;
+        } 
     }
 
     public function buff()

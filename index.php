@@ -68,7 +68,7 @@ echo "6: Exit" . PHP_EOL;
 
 echo "\n";
 
-$characterChoice = readline('Choose your hero: ') . PHP_EOL;
+$characterChoice = readline('Chose your hero: ') . PHP_EOL;
 
 echo "\n";
 
@@ -122,6 +122,8 @@ do {
     $enemy = $characters[array_rand($characters)];
 } while ($you->getName() == $enemy->getName());
 
+$you->affinityCheck($you, $enemy);
+
 sleep(1);
 
 echo "\n";
@@ -130,13 +132,13 @@ echo $you->getName() . " vs " . $enemy->getName() . PHP_EOL;
 sleep(1);
 echo "\n";
 echo "The war between hell and heaven is about to begin in..." . PHP_EOL;
-sleep(1);
-echo "3" . PHP_EOL;
-sleep(1);
-echo "2" . PHP_EOL;
-sleep(1);
-echo "1" . PHP_EOL;
-sleep(1);
+
+
+// for($i = 3; $i >= 1; $i--){
+//     sleep(1);
+//     echo $i . PHP_EOL;
+// }
+
 echo "\n";
 
 //Clear console
@@ -150,15 +152,15 @@ do {
     echo "\n";
 
     if($i > 1){
-        echo "Buff information : " . PHP_EOL;
-        echo "Enemy : ";
+        echo "\e[7mBuff information :\e[0m " . PHP_EOL;
+        echo "\n";
+        echo "\e[31mEnemy \e[39m: ";
         $enemy->incCooldown();
         echo "\n";
-        echo "You : ";
+        echo "\e[92mYou \e[39m: ";
         $you->incCooldown() . PHP_EOL;
 
         echo "\n";
-        
     }
     
     $i++;
@@ -166,12 +168,12 @@ do {
     $yourTurn = true;
     do{
         
-        echo "(1)  " . $you->getFirstSkillName() . "  (-" . $you->manaCostFirstSkill() . " mana)" .PHP_EOL;
-        echo "(2)  " . $you->getSecondSkillName() . "  (-" . $you->manaCostSecondSkill() . " mana)" . PHP_EOL;
-        echo "(3)  " . $you->getBuffName(). "  (-" . $you->manaCostBuff() . " mana)" . PHP_EOL;
+        echo "\e[1m(1)  " . "\e[0m" . "\e[35m" . $you->getFirstSkillName() . "  \e[39m(\e[34m-" . $you->manaCostFirstSkill() . " mana\e[39m)" .PHP_EOL;
+        echo "\e[1m(2)  " . "\e[0m" . "\e[35m" . $you->getSecondSkillName() . "  \e[39m(\e[34m-" . $you->manaCostSecondSkill() . " mana\e[39m)" . PHP_EOL;
+        echo "\e[1m(3)  " . "\e[0m" . "\e[36m" . $you->getBuffName(). "  \e[39m(\e[34m-" . $you->manaCostBuff() . " mana\e[39m)" . PHP_EOL;
         echo "\n";
-        echo "(4)  " . "Rest (+40 mana)" . PHP_EOL;
-        echo "(5)  " . "Sleep (+30 hp, -5 mana)" . PHP_EOL;
+        echo "\e[1m(4)  " . "Rest (+40 mana)" . PHP_EOL;
+        echo "\e[1m(5)  " . "Sleep (+30 hp, -5 mana)" . PHP_EOL;
         echo "\n";
         echo "You     =>   Hp : " . $you->getHealth() . "     " . "Mana : " . $you->getMana() . PHP_EOL;
         echo "Enemy   =>   Hp : " . $enemy->getHealth() . "     " . "Mana : " . $enemy->getMana() . PHP_EOL;
@@ -253,7 +255,7 @@ do {
         die();
     }
 
-    readline("(Enter a key to continue)") . PHP_EOL;
+    readline("Press enter to continue...") . PHP_EOL;
 
     echo "\n";
 
@@ -305,7 +307,7 @@ do {
         sleep(2);
         echo $enemy->getName() . " : Oh, is that you? Are you still not dead?" . PHP_EOL;
         echo "\n";
-        readline("(Enter a key to finish)") . PHP_EOL;
+        readline("Press enter to continue...") . PHP_EOL;
         die();
     }
 
@@ -320,7 +322,7 @@ do {
     $enemy->addMana(10);
     $you->addMana(10);
 
-    readline("(Enter a key to continue)") . PHP_EOL;
+    readline("Press enter to continue...") . PHP_EOL;
 
     //Clear console
     cls();
