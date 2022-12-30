@@ -121,44 +121,80 @@ abstract class Character implements GlobalSkills
         $target->takesDamages($this->getPhysicalDamages(), $this->getMagicalDamages()); //Target takes damages
     }
 
-    public function isAlive(): bool
+    public function isAlive($me, $enemy): bool
     {
-        return $this->health > 0; //Check if alive
+        if ($me->health <= 0) {
+            echo $me->name . " est mort..." . PHP_EOL;
+            echo $enemy->name . " est donc le grand vainqueur !" . PHP_EOL;
+            return false;
+        } else {
+            return true;
+        }
+        if ($enemy->health <= 0) {
+            echo $enemy->name . " est mort..." . PHP_EOL;
+            echo $me->name . " est donc le grand vainqueur !" . PHP_EOL;
+            return false;
+        } else {
+            return true;
+        }
     }
-
 
     public function rest(): void
     {
-        $this->mana += 10; //Restores 10 mana
-        echo ("You restored 10 mana\n");
+        $this->mana += 40; //Restores 10 mana
+        echo "You have recovered 40 mana points." . PHP_EOL;
+        echo "\n";
     }
 
 
     public function sleep(): void
     {
-        $this->mana -= 5; //Consume 5 mana
-        $this->health += 10; //and restore 10 health
-        echo ("You lost 5 mana and restored 10 health\n");
+        $this->mana -= 15; //Consume 5 mana
+        $this->health += 35; //and restore 30 health
+        echo $this->name . " recovered 35 hp" . PHP_EOL;
+        echo "\n";
+
     }
 
     public function levelUp(): void //Level up function
     {
+        $expGain = rand(50, 99);
+        echo ($this->name . ' a gagner ' . $expGain . " exp") . PHP_EOL;
+        $this->exp = $this->exp + $expGain;
+        echo "\n";
         if ($this->exp >= 100) {
             $this->level++;
             $this->health += 10;
             $this->defense += 10;
             $this->mana += 10;
+            $this->physicalDamages += 3;
+            $this->magicalDamages += 5;
             $this->exp = 0;
-            echo ($this->name . " has level up !\n");
+            echo ($this->name . " has level up !\n") . PHP_EOL;
+            sleep(1);
+            echo "\n";
             echo $this->name . " is now level " .  $this->level  . PHP_EOL;
-        } else {
-            $expGain = rand(10, 29);
-            echo ($this->name . ' a gagner ' . $expGain . " exp") . PHP_EOL;
-            $this->exp +  $expGain;
+            sleep(1);
+            echo "\n";
+            echo "Health : " . $this->health . "(+10)". PHP_EOL;
+            echo "Defense : " . $this->defense . "(+10)". PHP_EOL;
+            echo "Mana : " . $this->mana . "(+10)". PHP_EOL;
+            echo "Physical damage : " . $this->physicalDamages . "(+3)". PHP_EOL;
+            echo "Magical damage : " . $this->magicalDamages . "(+5)". PHP_EOL;
+            echo "\n";
+            
         }
     }
 
-
+    public function checkIfManaIsAvailable($cost, $current) {
+        if($cost > $current){
+            echo "You didn't have enough mana to perform this action." . PHP_EOL;
+            echo "\n";
+            return false;
+        } else if($cost <= $current){
+            return true;
+        }
+    }
 
     public function giveWeapon(?Weapon $weapon): void
     {
@@ -170,6 +206,29 @@ abstract class Character implements GlobalSkills
             $this->physicalDamages += $weapon->damage;
         } else {
             $this->magicalDamages += $weapon->damage;
+        }
+    }
+
+    public function buffInProgress() {
+        if($this->cooldown == 0){
+            return false;
+        }
+        if($this->cooldown > 0){
+            return true;
+        }
+    }
+
+    public function addMana($value){
+        $this->mana += $value;
+    }
+
+    public function incCooldown(): void
+    {
+        if ($this->cooldown != 0){
+            $this->buff();
+            echo "\n";
+        } else {
+            echo "Nothing is active at the moment";
         }
     }
 
@@ -225,6 +284,7 @@ abstract class Character implements GlobalSkills
                 break;
         }
     }
+
           
     public function checkMana($needMana) {
         if($this->mana < $needMana) {
@@ -233,3 +293,4 @@ abstract class Character implements GlobalSkills
         } else return true;
     } 
 }
+
