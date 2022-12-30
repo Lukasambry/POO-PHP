@@ -8,13 +8,13 @@ require_once('functions.php');
 
 class Knight extends Character
 {
-    //Knight = 125 hp, 29 def, 10 ad, 0 ap, 30 mana (5 mana regen / tour)
+    //Knight = 105 hp, 13 def, 10 ad, 0 ap
     public function __construct()
     {
         parent::__construct(
             'Anduin Lothar',
-            health: 125,
-            defense: 15,
+            health: 105,
+            defense: 13,
             physicalDamages: 10,
             magicalDamages: 0,
             mana: 30,

@@ -8,14 +8,14 @@ require_once('functions.php');
 
 class Assassin extends Character
 {
-    //Assassin = 90 hp, 15 def, 20 ad, 0 ap, 90 mana (5 mana regen / tours)
+    //Assassin = 90 hp, 10 def, 17 ad, 0 ap
     public function __construct()
     {
         parent::__construct(
             'Illidan Stormrage',
             health: 90,
-            defense: 9,
-            physicalDamages: 20,
+            defense: 10,
+            physicalDamages: 17,
             magicalDamages: 0,
             mana: 90,
             exp: 0,

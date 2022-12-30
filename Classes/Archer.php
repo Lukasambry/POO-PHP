@@ -8,13 +8,13 @@ require_once('functions.php');
 
 class Archer extends Character
 {
-    //Archer = 100 hp, 17 def, 12 ad, 0 ap, 50 mana (7 mana regen / tours)
+    //Archer = 100 hp, 17 def, 12 ad, 0 ap
     public function __construct(
         public int $arrows = 10,
     ) {
         parent::__construct(
             'Sylvanas Windrunner',
-            health: 100,
+            health: 98,
             defense: 9,
             physicalDamages: 12,
             magicalDamages: 0,

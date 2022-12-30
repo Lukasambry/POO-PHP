@@ -6,13 +6,13 @@ require_once('functions.php');
 
 class Paladin extends Character
 {
-    //Paladin = 110 hp, 25 def, 10 ad, 10 ap, 120 mana (5 mana regen / tour)
+    //Paladin = 110 hp, 25 def, 10 ad, 10 ap
     public function __construct()
     {
         parent::__construct(
             'Uther the Lightbringer',
             health:110,
-            defense:17,
+            defense:15,
             physicalDamages:10,
             magicalDamages:10,
             mana:120,

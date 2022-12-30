@@ -6,7 +6,7 @@ require_once('functions.php');
 
 class Mage extends Character
 {
-    //Mage = 95 hp, 9 def, 0 ad, 20 ap, 100 mana (10 mana regen / tours)
+    //Mage = 95 hp, 8 def, 0 ad, 18 ap
     public function __construct()
     {
         parent::__construct(
@@ -14,7 +14,7 @@ class Mage extends Character
             health:95,
             defense:8,
             physicalDamages:0,
-            magicalDamages:20,
+            magicalDamages:18,
             mana:100,
             exp:0,
             level:1,
