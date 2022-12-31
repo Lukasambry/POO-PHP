@@ -84,17 +84,15 @@ class Mage extends Character
             echo "\n";
             echo "Defense : " . $this->defense . "(+" . "12)" . PHP_EOL;
             echo "Health : " . $this->health . "(+" . "15)" . PHP_EOL;
-            echo "Magical Damage : " . $this->physicalDamages . "(+" . "10)" . PHP_EOL;
+            echo "Magical Damage : " . $this->magicalDamages . "(+" . "10)" . PHP_EOL;
             $this->cooldown++;
-        } else if ($this->cooldown === 1) {
-            $this->cooldown++;
-            echo 'Phoenix Flame is still active' . PHP_EOL;
-        } else if ($this->cooldown === 2) {
-            echo 'Phoenix Flame is finished' . PHP_EOL;
-            $this->cooldown = 0;
-            $this->defense -= 12;
-            $this->magicalDamages -= 10;
-            $this->health -= 15;
         }
+    }
+
+    public function cancelBuff() {
+        $this->cooldown = 0;
+        $this->defense -= 12;
+        $this->magicalDamages -= 10;
+        $this->health -= 15;
     }
 }

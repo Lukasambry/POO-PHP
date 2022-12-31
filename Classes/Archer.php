@@ -101,14 +101,12 @@ class Archer extends Character
             echo "Physical Damage : " . $this->physicalDamages . "(+" . "10)" . PHP_EOL;
             return parent::getDefense();
             $this->cooldown++;
-        } else if ($this->cooldown === 1) {
-            $this->cooldown++;
-            echo 'Focus skill is still active.' . PHP_EOL;
-        } else if ($this->cooldown === 2) {
-            echo 'Focus skill is finished.' . PHP_EOL;
-            $this->cooldown = 0;
-            $this->defense -= 8;
-            $this->physicalDamages -= 10;
         }
+    }
+
+    public function cancelBuff() {
+        $this->cooldown = 0;
+        $this->defense -= 8;
+        $this->physicalDamages -= 10;
     }
 }

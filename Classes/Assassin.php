@@ -88,15 +88,13 @@ class Assassin extends Character
             echo "Health : " . $this->health . "(\e[31m+" . "10\e[39m)" . PHP_EOL;
             echo "Physical Damage : " . $this->physicalDamages . "(+" . "10)" . PHP_EOL;
             $this->cooldown++;
-        } else if ($this->cooldown === 1) {
-            $this->cooldown++;
-            echo 'Stealth is still active' . PHP_EOL;
-        } else if ($this->cooldown === 2) {
-            echo 'Stealth is finished' . PHP_EOL;
-            $this->cooldown = 0;
-            $this->physicalDamages -= 10;
-            $this->defense -= 8;
-            $this->health -= 10;
         }
+    }
+
+    public function cancelBuff() {
+        $this->cooldown = 0;
+        $this->physicalDamages -= 10;
+        $this->defense -= 8;
+        $this->health -= 10;
     }
 }

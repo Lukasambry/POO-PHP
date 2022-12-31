@@ -83,19 +83,11 @@ class Knight extends Character
             echo "\n";
             echo "Defense : " . $this->defense . "(+" . "20)" . PHP_EOL;
             $this->cooldown++;
-        } else if ($this->cooldown === 1) {
-            $this->cooldown++;
-            echo 'Parade is still active' . PHP_EOL;
-        } else if ($this->cooldown === 2) {
-            echo 'Parade is finished' . PHP_EOL;
-            $this->cooldown = 0;
-            $this->defense -= 20;
         }
     }
 
-    //Faudra mettre cet condition dans la boucle on la mettre dans une function,
-    //en tout cas, faut que ça, soit call a chaque tours de boucle dans tout les cas
-
-    //En gros, si le cooldown est différent de 0, ça veut dire que Parade a était lancer dans tout les cas
-    //$knight->checkCooldown
+    public function cancelBuff() {
+        $this->cooldown = 0;
+        $this->defense -= 20;
+    }
 }

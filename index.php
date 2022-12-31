@@ -56,66 +56,78 @@ $choice = false;
 
 do {
 
-echo "1: Illidan Stormrage (Assassin)" . PHP_EOL;
-echo "2: Sylvanas Windrunner (Archer)" . PHP_EOL;
-echo "3: Anduin Lothar (Knight)" . PHP_EOL;
-echo "4: Kael\'thas Sunstrider (Mage)" . PHP_EOL;
-echo "5: Uther the Lightbringer (Paladin)" . PHP_EOL;
+    cls();
 
-echo "\n";
+    echo "\e[31m\e[1mWelcome to Bloodpath\e[0m\e[39m" . PHP_EOL;
 
-echo "6: Exit" . PHP_EOL;
+    echo "\n";
 
-echo "\n";
+    echo "\e[1mHere is a list of characters, make your choice !\e[0m" . PHP_EOL;
 
-$characterChoice = readline('Chose your hero: ') . PHP_EOL;
+    echo "\n";
 
-echo "\n";
+    echo "\e[1m1:\e[0m \e[0m\e[32mIllidan Stormrage (Assassin)\e[39m" . PHP_EOL;
+    echo "\e[1m2:\e[0m \e[0m\e[32mSylvanas Windrunner (Archer)\e[39m" . PHP_EOL;
+    echo "\e[1m3:\e[0m \e[0m\e[32mAnduin Lothar (Knight)\e[39m" . PHP_EOL;
+    echo "\e[1m4:\e[0m \e[0m\e[32mKael\'thas Sunstrider (Mage)\e[39m" . PHP_EOL;
+    echo "\e[1m5:\e[0m \e[0m\e[32mUther the Lightbringer (Paladin)\e[39m" . PHP_EOL;
+
+    echo "\n";
+
+    echo "\e[1m6:\e[0m \e[31mExit\e[39m" . PHP_EOL;
+
+    echo "\n";
+
+    $characterChoice = readline("Chose your hero: ") . PHP_EOL;
+
+    echo "\n";
 
 switch ($characterChoice) {
     case 1:
         $you = $rogue;
-        echo "Humm... So you chose " . $you->getName() . ". Be careful, it cuts !" . PHP_EOL;
+        echo "\e[1m\e[35mHumm... So you chose " . $you->getName() . ". Be careful, it cuts !" . PHP_EOL;
         $choice = true;
         echo "\n";
         break;
     case 2:
         $you = $archer;
-        echo "All in finesse ! " . $you->getName() . " won't disappoint you." . PHP_EOL;
+        echo "\e[1m\e[35mAll in finesse ! " . $you->getName() . " won't disappoint you." . PHP_EOL;
         $choice = true;
         echo "\n";
         break;
     case 3:
         $you = $knight;
-        echo "You chose " . $you->getName() . " ! He won't fall so easily !" . PHP_EOL;
+        echo "\e[1m\e[35mYou chose " . $you->getName() . " ! He won't fall so easily !" . PHP_EOL;
         $choice = true;
         echo "\n";
         break;
     case 4:
         $you = $mage;
-        echo "As " . $you->getName() .  " often says, a fire is extinguished as quickly as life." . PHP_EOL;
+        echo "\e[1m\e[35mAs " . $you->getName() .  " often says, a fire is extinguished as quickly as life." . PHP_EOL;
         $choice = true;
         echo "\n";
         break;
     case 5:
         $you = $paladin;
-        echo $you->getName() . " will always be on the side of justice!" . PHP_EOL;
+        echo $you->getName() . " \e[1m\e[35mwill always be on the side of justice!" . PHP_EOL;
         $choice = true;
         echo "\n";
         break;
     case 6:
-        echo "So ? Are we scared ?" . PHP_EOL;
+        echo "\e[1m\e[35mSo ? Are we scared ?" . PHP_EOL;
         $choice = true;
         echo "\n";
         die();
         break;
     default:
-        echo "I don't understand your choice..." . PHP_EOL;
+        echo "\e[1m\e[35mI don't understand your choice..." . PHP_EOL;
         echo "\n";
-        echo "Please Chose a hero" . PHP_EOL;
+        echo "\e[1m\e[35mPlease Chose a hero" . PHP_EOL;
         echo "\n";
 }
 } while(!$choice);
+
+echo "\e[0m\e[39m";
 
 //Get a random character for enemy
 do {
@@ -124,20 +136,21 @@ do {
 
 $you->affinityCheck($you, $enemy);
 
-sleep(1);
+sleep(2);
 
 echo "\n";
 
-echo $you->getName() . " vs " . $enemy->getName() . PHP_EOL;
-sleep(1);
+echo "\e[1m" . $you->getName() . " vs " . $enemy->getName() . "\e[0m" . PHP_EOL;
+sleep(2);
+
 echo "\n";
 echo "The war between hell and heaven is about to begin in..." . PHP_EOL;
 
 
-// for($i = 3; $i >= 1; $i--){
-//     sleep(1);
-//     echo $i . PHP_EOL;
-// }
+for($i = 3; $i >= 1; $i--){
+    sleep(1);
+    echo $i . PHP_EOL;
+}
 
 echo "\n";
 
@@ -145,38 +158,90 @@ echo "\n";
 cls();
 
 $alive = true;
-$i = 1;
+$i = 0;
+$youcd = 0;
+$enemycd = 0;
 
 do {
-    echo "---------- Round " . $i . "----------" . PHP_EOL;
+    $i++;
+
+    $haveMana = true;
+
+    $yourTurn = true;
+
+    if($you->getCooldown() == 1 || $you->getCooldown() == 2) {
+        $youcd++;
+    }
+    if($youcd > 0){
+        $you->setCooldown($youcd);
+    }
+    if($youcd == 2){
+        $you->cancelBuff();
+    }
+
+    if($enemy->getCooldown() == 1 || $enemy->getCooldown() == 2) {
+        $enemycd++;
+    }
+    if($enemycd > 0){
+        $enemy->setCooldown($enemycd);
+    }
+    if($enemycd == 2){
+        $enemy->cancelBuff();
+    }
+
     echo "\n";
 
-    if($i > 1){
-        echo "\e[7mBuff information :\e[0m " . PHP_EOL;
+    
+
+
+    do{
+        cls();
+        echo "---------- Round " . $i . "----------" . PHP_EOL;
         echo "\n";
-        echo "\e[31mEnemy \e[39m: ";
-        $enemy->incCooldown();
+
+        if($i > 1){
+            echo "\e[7m  Buff information :  \e[0m " . PHP_EOL;
+            echo "\n";
+            echo "\e[31mEnemy \e[39m: ";
+            if($enemy->getCooldown() == 0){
+                echo "Nothing is active at the moment." . PHP_EOL;
+            }else if ($enemy->getCooldown() == 1){
+                echo $enemy->getBuffName() . " is still active" . PHP_EOL;
+            }else if ($enemy->getCooldown() == 2){
+                echo $enemy->getBuffName() . " is soon over" . PHP_EOL;
+            }else if ($enemy->getCooldown() == 3){
+                echo $enemy->getBuffName() . " is finished" . PHP_EOL;
+            }
+    
+            echo "\e[92mYou \e[39m  : ";
+            if($you->getCooldown() == 0){
+                echo "Nothing is active at the moment." . PHP_EOL;
+            }else if ($you->getCooldown() == 1){
+                echo $you->getBuffName() . " is still active" . PHP_EOL;
+            }else if ($you->getCooldown() == 2){
+                echo $you->getBuffName() . " is soon over" . PHP_EOL;
+            }else if ($you->getCooldown() == 3){
+                echo $you->getBuffName() . " is finished" . PHP_EOL;
+            }
+    
+            echo "\n";
+        }
+        
+        echo "\e[1m(1)  " . "\e[0m" . "\e[33m" . $you->getFirstSkillName() . "  \e[39m(\e[34m-" . $you->manaCostFirstSkill() . " mana\e[39m)" .PHP_EOL;
+        echo "\e[1m(2)  " . "\e[0m" . "\e[33m" . $you->getSecondSkillName() . "  \e[39m(\e[34m-" . $you->manaCostSecondSkill() . " mana\e[39m)" . PHP_EOL;
+        echo "\e[1m(3)  " . "\e[0m" . "\e[33m" . $you->getBuffName(). "  \e[39m(\e[34m-" . $you->manaCostBuff() . " mana\e[39m)" . PHP_EOL;
         echo "\n";
-        echo "\e[92mYou \e[39m: ";
-        $you->incCooldown() . PHP_EOL;
+        echo "\e[1m(4)  " . "\e[35mRest \e[39m(\e[34m+40 mana)" . PHP_EOL;
+        echo "\e[1m\e[39m(5)  " . "\e[35mSleep \e[39m(\e[31m+30 hp\e[39m, \e[34m-5 mana)" . PHP_EOL;
+        echo "\n";
+        echo "\e[39mYou     =>   Hp : " . "\e[31m" . $you->getHealth() . "   \e[39m  " . "Mana : " . "\e[34m" . $you->getMana() . "\e[39m" . PHP_EOL;
+        echo "\e[39mEnemy   =>   Hp : " . "\e[31m" . $enemy->getHealth() . "  \e[39m   " . "Mana : " . "\e[34m" . $enemy->getMana() . "\e[39m" . PHP_EOL;
 
         echo "\n";
-    }
-    
-    $i++;
-    
-    $yourTurn = true;
-    do{
-        
-        echo "\e[1m(1)  " . "\e[0m" . "\e[35m" . $you->getFirstSkillName() . "  \e[39m(\e[34m-" . $you->manaCostFirstSkill() . " mana\e[39m)" .PHP_EOL;
-        echo "\e[1m(2)  " . "\e[0m" . "\e[35m" . $you->getSecondSkillName() . "  \e[39m(\e[34m-" . $you->manaCostSecondSkill() . " mana\e[39m)" . PHP_EOL;
-        echo "\e[1m(3)  " . "\e[0m" . "\e[36m" . $you->getBuffName(). "  \e[39m(\e[34m-" . $you->manaCostBuff() . " mana\e[39m)" . PHP_EOL;
-        echo "\n";
-        echo "\e[1m(4)  " . "Rest (+40 mana)" . PHP_EOL;
-        echo "\e[1m(5)  " . "Sleep (+30 hp, -5 mana)" . PHP_EOL;
-        echo "\n";
-        echo "You     =>   Hp : " . $you->getHealth() . "     " . "Mana : " . $you->getMana() . PHP_EOL;
-        echo "Enemy   =>   Hp : " . $enemy->getHealth() . "     " . "Mana : " . $enemy->getMana() . PHP_EOL;
+
+        if(!$haveMana){
+            echo "WARNING : You don't have enought mana for this..." . PHP_EOL;
+        }
 
         echo "\n";
 
@@ -191,6 +256,7 @@ do {
                     sleep(1);
                     $yourTurn = false;
                 }else {
+                    $haveMana = false;
                     $yourTurn = true;
                 }
                 break;
@@ -200,6 +266,7 @@ do {
                     sleep(1);
                     $yourTurn = false;
                 }else {
+                    $haveMana = false;
                     $yourTurn = true;
                 }
                 break;
@@ -210,13 +277,11 @@ do {
                         sleep(1);
                         $yourTurn = false;
                     } else if($you->buffInProgress()){
-                        cls();
-                        echo $you->getBuffName() . " is still active" . PHP_EOL;
-                        sleep(1);
                         echo "\n";
                         $yourTurn = true;
                     }
                 }else {
+                    $haveMana = false;
                     $yourTurn = true;
                 }
                 break;
@@ -231,11 +296,14 @@ do {
                     sleep(1);
                     $yourTurn = false;
                 }else {
+                    $haveMana = false;
                     $yourTurn = true;
                 }
                 break;
         }
     } while($yourTurn);
+
+    $haveMana = true;
 
     echo "\n";
 
@@ -250,7 +318,7 @@ do {
         echo $enemy->getName() . " : " . " Arrrghhhh... Ho.. hav.. y.., what powe.." . PHP_EOL;
         sleep(2);
         echo "\n";
-        echo "You : " . "The dead don't speak.";
+        echo "You : " . "The dead don't speak." . PHP_EOL;
         readline("(Enter a key to finish)") . PHP_EOL;
         die();
     }
@@ -265,34 +333,55 @@ do {
 
     echo "\n";
 
-    //If the enemy hp is below 30, recover hp
-    if ($enemy->getHealth() <= 30) {
-        echo $enemy->getName() . " use Sleep" . PHP_EOL;
-        echo "\n";
-        $enemy->sleep();
-        sleep(1);
-    } else { // We check if there no buff in
+    $enemyTurn = true;
+    
+    //Enemy turn
+
+    if($enemy->getHealth() < 30){
+        if(rand(1, 2) == 1){
+            echo $enemy->getName() . " : Arrrgh, i won't fall now !".PHP_EOL;
+            echo $enemy->getName() . " use Sleep" . PHP_EOL;
+            echo "\n";
+            $enemy->sleep();
+            $enemyTurn = false;
+            sleep(1);
+        }
+    }
+
+    if($enemyTurn){
         if(!$enemy->buffInProgress()){
             if($enemy->checkIfManaIsAvailable($enemy->manaCostBuff(), $enemy->getMana())){
-                $enemy->buff();
-                sleep(1);
-            }
-        } else {
-            if (rand(1, 2) == 1) {
-                if($enemy->checkIfManaIsAvailable($enemy->manaCostFirstSkill(), $enemy->getMana())){
-                    $enemy->first($you);
+                if(rand(1, 2) == 2){
+                    $enemy->buff();
+                    $enemyTurn = false;
                     sleep(1);
-                    echo "\n";
                 }
-            } else if($enemy->checkIfManaIsAvailable($enemy->manaCostSecondSkill(), $enemy->getMana())) {
-                $enemy->second($you);
-                sleep(1);
-                echo "\n";
-            } else {
-                $enemy->rest();
             }
         }
+    }
 
+    if($enemyTurn){
+        if (rand(1, 2) == 1) {
+            if($enemy->checkIfManaIsAvailable($enemy->manaCostFirstSkill(), $enemy->getMana())){
+                $enemy->first($you);
+                $enemyTurn = false;
+                sleep(1);
+                echo "\n";
+            }
+        } else {
+            if($enemy->checkIfManaIsAvailable($enemy->manaCostSecondSkill(), $enemy->getMana())){
+                $enemy->second($you);
+                $enemyTurn = false;
+                sleep(1);
+                echo "\n";
+            }
+        }
+    }
+
+    if($enemyTurn){
+        echo $enemy->getName() . " don't have enought mana to perform an actions..." . PHP_EOL;
+        $enemy->rest() . PHP_EOL;
+        echo "\n";
     }
 
     if($you->getHealth() <= 0){

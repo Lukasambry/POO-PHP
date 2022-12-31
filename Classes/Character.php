@@ -62,6 +62,10 @@ abstract class Character implements GlobalSkills
         return $this->level;
     }
 
+    public function getCooldown(): int {
+        return $this->cooldown;
+    }
+
     public function getAffinity(): int
     {
         return $this->affinity;
@@ -90,6 +94,9 @@ abstract class Character implements GlobalSkills
     public function setMana($mana)
     {
         $this->mana = $mana;
+    }
+    public function setCooldown($cd){
+        $this->cooldown = $cd;
     }
     public function setExp($exp)
     {
@@ -189,8 +196,6 @@ abstract class Character implements GlobalSkills
 
     public function checkIfManaIsAvailable($cost, $current) {
         if($cost > $current){
-            echo "You didn't have enough mana to perform this action." . PHP_EOL;
-            echo "\n";
             return false;
         } else if($cost <= $current){
             return true;
@@ -227,11 +232,9 @@ abstract class Character implements GlobalSkills
     {
         if ($this->cooldown != 0){
             $this->buff();
-            echo "\n";
-        } else {
-            echo "Nothing is active at the moment";
         }
     }
+    
 
     // 0 > 2 > 1
     // 3 > 0,1,2
@@ -248,7 +251,7 @@ abstract class Character implements GlobalSkills
         switch ($me->getAffinity()) {
             case 0:
                 // Wind > Water > Fire
-                echo "Water is strong against Fire, weak against Wind" . PHP_EOL;
+                echo "\e[96mWater is strong against Fire, weak against Wind\e[39m" . PHP_EOL;
                 if ($enemy->getAffinity() == 1) {
                     $me->setMagicalDamages($me->getMagicalDamages() * 1.2);
                     $me->setPhysicalDamages($me->getPhysicalDamages() * 1.2);
@@ -261,7 +264,7 @@ abstract class Character implements GlobalSkills
 
             case 1:
                 // Water > Fire > Wind
-                echo "Fire is strong against Wind, weak against Water" . PHP_EOL;
+                echo "\e[96mFire is strong against Wind, weak against Water\e[39m" . PHP_EOL;
                 if ($enemy->getAffinity() == 2) {
                     $me->setMagicalDamages($me->getMagicalDamages() * 1.2);
                     $me->setPhysicalDamages($me->getPhysicalDamages() * 1.2);
@@ -273,7 +276,7 @@ abstract class Character implements GlobalSkills
                 break;
 
             case 2:
-                echo "Wind is strong against Water, weak against Fire" . PHP_EOL;
+                echo "\e[96mWind is strong against Water, weak against Fire\e[39m" . PHP_EOL;
                 if ($enemy->getAffinity() == 0) {
                     $me->setMagicalDamages($me->getMagicalDamages() * 1.2);
                     $me->setPhysicalDamages($me->getPhysicalDamages() * 1.2);
