@@ -167,7 +167,7 @@ abstract class Character implements GlobalSkills
     {
         $defGain = rand(1, 3);
         $expGain = rand(30, 75);
-        echo ($this->name . ' a gagner ' . $expGain . " exp") . PHP_EOL;
+        echo ($this->name . ' gained ' . $expGain . " exp") . PHP_EOL;
         $this->exp = $this->exp + $expGain;
         echo "\n";
         if ($this->exp >= 100) {
