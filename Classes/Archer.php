@@ -58,8 +58,8 @@ class Archer extends Character
             echo $this->name . " use Arcane Shot !" . PHP_EOL;
             $this->mana -= 25;
             $this->arrows -= 1;
-            echo $target->name . " lost " . (($this->physicalDamages + 12) - $target->defense) . " life points" . PHP_EOL;
             if((($this->physicalDamages + 12) - $target->defense) > 0){
+                echo $target->name . " lost " . (($this->physicalDamages + 12) - $target->defense) . " life points" . PHP_EOL;
                 $target->health -= (($this->physicalDamages + 12) - $target->defense);
             } else {
                 echo $target->name . ' lost ' . "0 life points" . PHP_EOL;
@@ -99,7 +99,6 @@ class Archer extends Character
             echo "Defense : " . $this->defense . "(+" . "8)" . PHP_EOL;
             echo "Arrow : " . $this->arrows . "(+" . "5)" . PHP_EOL;
             echo "Physical Damage : " . $this->physicalDamages . "(+" . "10)" . PHP_EOL;
-            return parent::getDefense();
             $this->cooldown++;
         }
     }

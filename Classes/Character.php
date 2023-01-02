@@ -185,7 +185,7 @@ abstract class Character implements GlobalSkills
             sleep(1);
             echo "\n";
             echo "Health : " . $this->health . "(+10)". PHP_EOL;
-            echo "Defense : " . $this->defense . "+(". $defGain . ")" . PHP_EOL;
+            echo "Defense : " . $this->defense . "(+". $defGain . ")" . PHP_EOL;
             echo "Mana : " . $this->mana . "(+10)". PHP_EOL;
             echo "Physical damage : " . $this->physicalDamages . "(+3)". PHP_EOL;
             echo "Magical damage : " . $this->magicalDamages . "(+5)". PHP_EOL;

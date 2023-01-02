@@ -69,7 +69,7 @@ do {
     echo "\e[1m1:\e[0m \e[0m\e[32mIllidan Stormrage (Assassin)\e[39m" . PHP_EOL;
     echo "\e[1m2:\e[0m \e[0m\e[32mSylvanas Windrunner (Archer)\e[39m" . PHP_EOL;
     echo "\e[1m3:\e[0m \e[0m\e[32mAnduin Lothar (Knight)\e[39m" . PHP_EOL;
-    echo "\e[1m4:\e[0m \e[0m\e[32mKael\'thas Sunstrider (Mage)\e[39m" . PHP_EOL;
+    echo "\e[1m4:\e[0m \e[0m\e[32mKael'thas Sunstrider (Mage)\e[39m" . PHP_EOL;
     echo "\e[1m5:\e[0m \e[0m\e[32mUther the Lightbringer (Paladin)\e[39m" . PHP_EOL;
 
     echo "\n";
@@ -418,38 +418,3 @@ do {
 
     
 } while($alive);
-
-
-
-
-
-//     sleep(1);
-
-
-//     echo "Vous (" . $you->getName() . ")" . " : " . $you->getHealth() . " Hp" . PHP_EOL;
-//     echo "Enemy (" . $enemy->getName() . ")" . " : " . $enemy->getHealth() . " Hp" . PHP_EOL;
-
-//     echo "\n";
-
-//     if ($enemy->getHealth() <= 0) {
-//         echo $enemy->getName() . " est mort..." . PHP_EOL;
-//         $alive = false;
-//     } else if ($you->getHealth() <= 0) {
-//         $alive = false;
-//         echo "Vous avez succombé de vos blessures..." . PHP_EOL;
-//     }
-
-//     sleep(1);
-// } while ($alive);
-
-
-
-    // echo('Mage :' . $mage->getPhysicalDamages() . " " . $mage->getMagicalDamages() . PHP_EOL);
-    // echo('Paladin :'.$paladin->getPhysicalDamages() . " " . $paladin->getMagicalDamages() . PHP_EOL);
-    // echo('Knight :'.$knight->getPhysicalDamages() . " " . $knight->getMagicalDamages() . PHP_EOL);
-    // echo('Archer :'.$archer->getPhysicalDamages() . " " . $archer->getMagicalDamages() . PHP_EOL);
-    // echo('Rogue :'.$rogue->getPhysicalDamages() . " " . $rogue->getMagicalDamages() . PHP_EOL);
-
-
-    //echo(" ". $characters[4]->affinityCheck($characters[4]->getAffinity(), $characters[0]->getAffinity())); Affinity
-    //echo($characters[3]->getLevel() . " a " . $characters[3]->getExp()); Check lvl and exp
