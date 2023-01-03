@@ -45,7 +45,7 @@ class Mage extends Character
     }
 
     public function manaCostBuff(): int {
-        return 80;
+        return 70;
     }
 
     public function first($target)
@@ -78,9 +78,9 @@ class Mage extends Character
             $this->defense += 12;
             $this->magicalDamages += 10;
             $this->health += 15;
-            $this->mana -= 80;
+            $this->mana -= 70;
             echo "Phoenix Flame !\n" . PHP_EOL;
-            echo $this->name . " stats increased for 2 turns!" . PHP_EOL;
+            echo $this->name . " stats increased for 3 turns!" . PHP_EOL;
             echo "\n";
             echo "Defense : " . $this->defense . "(+" . "12)" . PHP_EOL;
             echo "Health : " . $this->health . "(+" . "15)" . PHP_EOL;
@@ -91,8 +91,8 @@ class Mage extends Character
 
     public function cancelBuff() {
         $this->cooldown = 0;
-        $this->defense -= 12;
-        $this->magicalDamages -= 10;
-        $this->health -= 15;
+        $this->setDefense($this->defense - 12);
+        $this->setMagicalDamages($this->magicalDamages - 10);
+        $this->setHealth($this->health - 15);
     }
 }

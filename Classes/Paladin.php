@@ -74,11 +74,11 @@ class Paladin extends Character
     public function buff()
     {
         if ($this->cooldown === 0) {
-            $this->defense += 35;
+            $this->defense += 20;
             echo "Holy Prayer !\n" . PHP_EOL;
-            echo $this->name . " stats increased for 2 turns!" . PHP_EOL;
+            echo $this->name . " stats increased for 3 turns!" . PHP_EOL;
             echo "\n";
-            echo "Defense : " . $this->defense . "(+" . "35)" . PHP_EOL;
+            echo "Defense : " . $this->defense . "(+" . "20)" . PHP_EOL;
             $this->mana -= 50;
             $this->cooldown++;
         }
@@ -86,7 +86,7 @@ class Paladin extends Character
 
     public function cancelBuff() {
         $this->cooldown = 0;
-        $this->defense -= 35;
+        $this->setDefense($this->defense - 20);
     }
 
 }

@@ -56,7 +56,7 @@ $choice = false;
 
 do {
 
-    cls();
+  //  cls();
 
     echo "\e[31m\e[1mWelcome to Bloodpath\e[0m\e[39m" . PHP_EOL;
 
@@ -130,37 +130,39 @@ switch ($characterChoice) {
 echo "\e[0m\e[39m";
 
 //Get a random character for enemy
-do {
-    $enemy = $characters[array_rand($characters)];
-} while ($you->getName() == $enemy->getName());
+// do {
+//     $enemy = $characters[array_rand($characters)];
+// } while ($you->getName() == $enemy->getName());
+
+$enemy = $rogue;
 
 $you->affinityCheck($you, $enemy);
 
-sleep(2);
+// sleep(2);
 
-echo "\n";
+// echo "\n";
 
-echo "\e[1m" . $you->getName() . " vs " . $enemy->getName() . "\e[0m" . PHP_EOL;
-sleep(2);
+// echo "\e[1m" . $you->getName() . " vs " . $enemy->getName() . "\e[0m" . PHP_EOL;
+// sleep(2);
 
-echo "\n";
-echo "The war between hell and heaven is about to begin in..." . PHP_EOL;
+// echo "\n";
+// echo "The war between hell and heaven is about to begin in..." . PHP_EOL;
 
 
-for($i = 3; $i >= 1; $i--){
-    sleep(1);
-    echo $i . PHP_EOL;
-}
+// for($i = 3; $i >= 1; $i--){
+//     sleep(1);
+//     echo $i . PHP_EOL;
+// }
 
-echo "\n";
+// echo "\n";
 
 //Clear console
-cls();
+//cls();
 
 $alive = true;
 $i = 0;
-$youcd = 0;
-$enemycd = 0;
+$youCd = 0;
+$enemyCd = 0;
 
 do {
     $i++;
@@ -169,24 +171,29 @@ do {
 
     $yourTurn = true;
 
-    if($you->getCooldown() == 1 || $you->getCooldown() == 2) {
-        $youcd++;
+    if($you->getCooldown() == 1 || $you->getCooldown() == 2 || $you->getCooldown() == 3) {
+        $youCd++;
     }
-    if($youcd > 0){
-        $you->setCooldown($youcd);
+    if($youCd > 0){
+        $you->setCooldown($youCd);
     }
-    if($youcd == 2){
+    if($youCd == 4){
         $you->cancelBuff();
+        $you->setCooldown(0);
+        $youCd = 0;
     }
 
-    if($enemy->getCooldown() == 1 || $enemy->getCooldown() == 2) {
-        $enemycd++;
+    if($enemy->getCooldown() == 1 || $enemy->getCooldown() == 2 || $enemy->getCooldown() == 3) {
+        $enemyCd++;
     }
-    if($enemycd > 0){
-        $enemy->setCooldown($enemycd);
+    if($enemyCd > 0){
+        $enemy->setCooldown($enemyCd);
     }
-    if($enemycd == 2){
+    if($enemyCd == 4){
         $enemy->cancelBuff();
+        $enemy->setCooldown(0);
+        $enemyCd = 0;
+
     }
 
     echo "\n";
@@ -195,7 +202,7 @@ do {
 
 
     do{
-        cls();
+      //  cls();
         echo "---------- Round " . $i . "----------" . PHP_EOL;
         echo "\n";
 
@@ -210,7 +217,7 @@ do {
             }else if ($enemy->getCooldown() == 2){
                 echo $enemy->getBuffName() . " is soon over" . PHP_EOL;
             }else if ($enemy->getCooldown() == 3){
-                echo $enemy->getBuffName() . " is finished" . PHP_EOL;
+                echo $enemy->getBuffName() . " will end next turn" . PHP_EOL;
             }
     
             echo "\e[92mYou \e[39m  : ";
@@ -221,7 +228,7 @@ do {
             }else if ($you->getCooldown() == 2){
                 echo $you->getBuffName() . " is soon over" . PHP_EOL;
             }else if ($you->getCooldown() == 3){
-                echo $you->getBuffName() . " is finished" . PHP_EOL;
+                echo $you->getBuffName() . " will end next turn" . PHP_EOL;
             }
     
             echo "\n";
@@ -232,7 +239,7 @@ do {
         echo "\e[1m(3)  " . "\e[0m" . "\e[33m" . $you->getBuffName(). "  \e[39m(\e[34m-" . $you->manaCostBuff() . " mana\e[39m)" . PHP_EOL;
         echo "\n";
         echo "\e[1m(4)  " . "\e[35mRest \e[39m(\e[34m+40 mana)" . PHP_EOL;
-        echo "\e[1m\e[39m(5)  " . "\e[35mSleep \e[39m(\e[31m+30 hp\e[39m, \e[34m-5 mana)" . PHP_EOL;
+        echo "\e[1m\e[39m(5)  " . "\e[35mSleep \e[39m(\e[31m+30 hp\e[39m)" . PHP_EOL;
         echo "\n";
         echo "\e[39mYou     =>   Hp : " . "\e[31m" . $you->getHealth() . "   \e[39m  " . "Mana : " . "\e[34m" . $you->getMana() . "\e[39m" . PHP_EOL;
         echo "\e[39mEnemy   =>   Hp : " . "\e[31m" . $enemy->getHealth() . "  \e[39m   " . "Mana : " . "\e[34m" . $enemy->getMana() . "\e[39m" . PHP_EOL;
@@ -379,7 +386,7 @@ do {
     }
 
     if($enemyTurn){
-        echo $enemy->getName() . " don't have enought mana to perform an actions..." . PHP_EOL;
+        echo $enemy->getName() . " don't have enough mana to perform this action..." . PHP_EOL;
         $enemy->rest() . PHP_EOL;
         echo "\n";
     }
@@ -414,7 +421,7 @@ do {
     readline("Press enter to continue...") . PHP_EOL;
 
     //Clear console
-    cls();
+    //cls();
 
     
 } while($alive);

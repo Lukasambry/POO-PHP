@@ -82,7 +82,7 @@ class Assassin extends Character
             $this->health += 10;
             $this->mana -= 20;
             echo "Stealth !\n" . PHP_EOL;
-            echo $this->name . " stats increased for 2 turns!" . PHP_EOL;
+            echo $this->name . " stats increased for 3 turns!" . PHP_EOL;
             echo "\n";
             echo "Defense : " . $this->defense . "(\e[33m+" . "8\e[39m)" . PHP_EOL;
             echo "Health : " . $this->health . "(\e[31m+" . "10\e[39m)" . PHP_EOL;
@@ -93,8 +93,8 @@ class Assassin extends Character
 
     public function cancelBuff() {
         $this->cooldown = 0;
-        $this->physicalDamages -= 10;
-        $this->defense -= 8;
-        $this->health -= 10;
+        $this->setPhysicalDamages($this->physicalDamages - 10);
+        $this->setDefense($this->defense - 8);
+        $this->setHealth($this->health - 10);
     }
 }

@@ -76,18 +76,18 @@ class Knight extends Character
     public function buff()
     {
         if ($this->cooldown === 0) {
-            $this->defense += 20;
+            $this->defense += 15;
             $this->mana -= 25;
             echo "Parade !\n" . PHP_EOL;
-            echo $this->name . " defense increased for 2 turns!" . PHP_EOL;
+            echo $this->name . " defense increased for 3 turns!" . PHP_EOL;
             echo "\n";
-            echo "Defense : " . $this->defense . "(+" . "20)" . PHP_EOL;
+            echo "Defense : " . $this->defense . "(+" . "15)" . PHP_EOL;
             $this->cooldown++;
         }
     }
 
     public function cancelBuff() {
         $this->cooldown = 0;
-        $this->defense -= 20;
+        $this->setDefense($this->defense - 15);
     }
 }

@@ -131,15 +131,15 @@ abstract class Character implements GlobalSkills
     public function isAlive($me, $enemy): bool
     {
         if ($me->health <= 0) {
-            echo $me->name . " est mort..." . PHP_EOL;
-            echo $enemy->name . " est donc le grand vainqueur !" . PHP_EOL;
+            echo $me->name . " is dead..." . PHP_EOL;
+            echo $enemy->name . " is the big winner ! !" . PHP_EOL;
             return false;
         } else {
             return true;
         }
         if ($enemy->health <= 0) {
-            echo $enemy->name . " est mort..." . PHP_EOL;
-            echo $me->name . " est donc le grand vainqueur !" . PHP_EOL;
+            echo $enemy->name . " is dead..." . PHP_EOL;
+            echo $me->name . " is the big winner ! !" . PHP_EOL;
             return false;
         } else {
             return true;
@@ -149,23 +149,21 @@ abstract class Character implements GlobalSkills
     public function rest(): void
     {
         $this->mana += 40; //Restores 10 mana
-        echo "You have recovered 40 mana points." . PHP_EOL;
+        echo $this->name . " have recovered 40 mana points." . PHP_EOL;
         echo "\n";
     }
 
 
     public function sleep(): void
     {
-        $this->mana -= 15; //Consume 5 mana
-        $this->health += 35; //and restore 30 health
+        $this->health += 35; //and restore 35 health
         echo $this->name . " recovered 35 hp" . PHP_EOL;
         echo "\n";
-
     }
 
     public function levelUp(): void //Level up function
     {
-        $defGain = rand(1, 3);
+        $defGain = floatval(rand(1, 3));
         $expGain = rand(30, 75);
         echo ($this->name . ' gained ' . $expGain . " exp") . PHP_EOL;
         $this->exp = $this->exp + $expGain;
@@ -255,7 +253,7 @@ abstract class Character implements GlobalSkills
                 if ($enemy->getAffinity() == 1) {
                     $me->setMagicalDamages($me->getMagicalDamages() * 1.2);
                     $me->setPhysicalDamages($me->getPhysicalDamages() * 1.2);
-                } else if ($enemy == 2) {
+                } else if ($enemy->getAffinity() == 2) {
                     $me->setMagicalDamages($me->getMagicalDamages() * 0.8);
                     $me->setPhysicalDamages($me->getPhysicalDamages() * 0.8);
                 } else {

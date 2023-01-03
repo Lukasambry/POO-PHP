@@ -94,7 +94,7 @@ class Archer extends Character
             $this->physicalDamages += 10;
             $this->defense += 8;
             echo "Focus !\n" . PHP_EOL;
-            echo $this->name . " stats increased for 2 turns!" . PHP_EOL;
+            echo $this->name . " stats increased for 3 turns!" . PHP_EOL;
             echo "\n";
             echo "Defense : " . $this->defense . "(+" . "8)" . PHP_EOL;
             echo "Arrow : " . $this->arrows . "(+" . "5)" . PHP_EOL;
@@ -105,7 +105,7 @@ class Archer extends Character
 
     public function cancelBuff() {
         $this->cooldown = 0;
-        $this->defense -= 8;
-        $this->physicalDamages -= 10;
+        $this->setDefense($this->defense - 8);
+        $this->setPhysicalDamages($this->physicalDamages - 10);
     }
 }
