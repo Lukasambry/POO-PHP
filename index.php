@@ -56,7 +56,7 @@ $choice = false;
 
 do {
 
-  //  cls();
+    cls();
 
     echo "\e[31m\e[1mWelcome to Bloodpath\e[0m\e[39m" . PHP_EOL;
 
@@ -130,34 +130,33 @@ switch ($characterChoice) {
 echo "\e[0m\e[39m";
 
 //Get a random character for enemy
-// do {
-//     $enemy = $characters[array_rand($characters)];
-// } while ($you->getName() == $enemy->getName());
+do {
+    $enemy = $characters[array_rand($characters)];
+} while ($you->getName() == $enemy->getName());
 
-$enemy = $rogue;
 
 $you->affinityCheck($you, $enemy);
 
-// sleep(2);
+sleep(2);
 
-// echo "\n";
+echo "\n";
 
-// echo "\e[1m" . $you->getName() . " vs " . $enemy->getName() . "\e[0m" . PHP_EOL;
-// sleep(2);
+echo "\e[1m" . $you->getName() . " vs " . $enemy->getName() . "\e[0m" . PHP_EOL;
+sleep(2);
 
-// echo "\n";
-// echo "The war between hell and heaven is about to begin in..." . PHP_EOL;
+echo "\n";
+echo "The war between hell and heaven is about to begin in..." . PHP_EOL;
 
 
-// for($i = 3; $i >= 1; $i--){
-//     sleep(1);
-//     echo $i . PHP_EOL;
-// }
+for($i = 3; $i >= 1; $i--){
+    sleep(1);
+    echo $i . PHP_EOL;
+}
 
-// echo "\n";
+echo "\n";
 
 //Clear console
-//cls();
+cls();
 
 $alive = true;
 $i = 0;
@@ -202,7 +201,7 @@ do {
 
 
     do{
-      //  cls();
+        cls();
         echo "---------- Round " . $i . "----------" . PHP_EOL;
         echo "\n";
 
