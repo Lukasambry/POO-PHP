@@ -246,7 +246,7 @@ do {
         echo "\n";
 
         if(!$haveMana){
-            echo "WARNING : You don't have enought mana for this..." . PHP_EOL;
+            echo "\e[31mWARNING : You don't have enought mana for this...\e[39m" . PHP_EOL;
         }
 
         echo "\n";

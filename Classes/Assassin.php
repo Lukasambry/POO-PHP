@@ -52,12 +52,12 @@ class Assassin extends Character
     public function first($target)
     {
             $this->mana -= 45;
-            echo $this->name . " use Ambush !" . PHP_EOL;
+            echo "\e[32m" . $this->name . " use \e[35mAmbush \e[39m!" . PHP_EOL;
             if((($this->physicalDamages + 14) - $target->defense) > 0){
-                echo $target->name . ' lost ' . ($this->physicalDamages + 14) - $target->defense . " life points" . PHP_EOL;
+                echo "\e[31m" . $target->name . "\e[39m" . ' lost ' . "\e[31m" . ($this->physicalDamages + 14) - $target->defense . " life points" . PHP_EOL;
                 $target->health -= ($this->physicalDamages + 14) - $target->defense;
             } else {
-                echo $target->name . ' lost ' . "0 life points" . PHP_EOL;
+                echo "\e[31m" . $target->name . "\e[39m" . ' lost ' . "\e[31m" ."0 life points" . PHP_EOL;
             }
             
     }
@@ -65,12 +65,12 @@ class Assassin extends Character
     public function second($target)
     {
         $this->mana -= 30;
-        echo $this->name . " use Eviserate !" . PHP_EOL;
+        echo "\e[32m" . $this->name . "\e[39m" . " use \e[35mEviserate \e[39m!" . PHP_EOL;
         if((($this->physicalDamages + 20) - $target->defense) > 0){
             $target->health -= (($this->physicalDamages + 20) - $target->defense);
-            echo $target->name . ' lost ' . (($this->physicalDamages + 20) - $target->defense) . " life points" . PHP_EOL;
+            echo "\e[31m" . $target->name . "\e[39m" . ' lost ' . "\e[31m" . (($this->physicalDamages + 20) - $target->defense) . " life points" . PHP_EOL;
         } else {
-            echo $target->name . ' lost ' . "0 life points" . PHP_EOL;
+            echo "\e[31m" . $target->name . "\e[39m" . ' lost ' . "\e[31m0 life points\e[39m" . PHP_EOL;
         }      
     }
 
@@ -81,12 +81,12 @@ class Assassin extends Character
             $this->defense += 8;
             $this->health += 10;
             $this->mana -= 20;
-            echo "Stealth !\n" . PHP_EOL;
-            echo $this->name . " stats increased for 3 turns!" . PHP_EOL;
+            echo "\e[35mStealth \e[39m!\n" . PHP_EOL;
+            echo $this->name . " stats increased for \e[36m3 \e[39mturns!" . PHP_EOL;
             echo "\n";
-            echo "Defense : " . $this->defense . "(\e[33m+" . "8\e[39m)" . PHP_EOL;
-            echo "Health : " . $this->health . "(\e[31m+" . "10\e[39m)" . PHP_EOL;
-            echo "Physical Damage : " . $this->physicalDamages . "(+" . "10)" . PHP_EOL;
+            echo "\e[32m↑  \e[39mDef : " . $this->defense . "(\e[32m+" . "8\e[39m)" . PHP_EOL;
+            echo "\e[32m↑  \e[39mHp : " . $this->health . "(\e[32m+" . "10\e[39m)" . PHP_EOL;
+            echo "\e[32m↑  \e[39mAd : " . $this->physicalDamages . "(\e[32m+" . "10)" . PHP_EOL;
             $this->cooldown++;
         }
     }
