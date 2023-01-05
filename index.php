@@ -122,7 +122,7 @@ switch ($characterChoice) {
     default:
         echo "\e[1m\e[35mI don't understand your choice..." . PHP_EOL;
         echo "\n";
-        echo "\e[1m\e[35mPlease Chose a hero" . PHP_EOL;
+        echo "\e[1m\e[35mPlease Choose a hero" . PHP_EOL;
         echo "\n";
 }
 } while(!$choice);
@@ -246,7 +246,7 @@ do {
         echo "\n";
 
         if(!$haveMana){
-            echo "WARNING : You don't have enought mana for this..." . PHP_EOL;
+            echo "\e[31mWARNING : You don't have enought mana for this...\e[39m" . PHP_EOL;
         }
 
         echo "\n";

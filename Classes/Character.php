@@ -149,7 +149,7 @@ abstract class Character implements GlobalSkills
     public function rest(): void
     {
         $this->mana += 40; //Restores 10 mana
-        echo $this->name . " have recovered 40 mana points." . PHP_EOL;
+        echo "\e[32m" . $this->name . "\e[39m have recovered \e[34m40 \e[39mmana points." . PHP_EOL;
         echo "\n";
     }
 
@@ -157,7 +157,7 @@ abstract class Character implements GlobalSkills
     public function sleep(): void
     {
         $this->health += 35; //and restore 35 health
-        echo $this->name . " recovered 35 hp" . PHP_EOL;
+        echo "\e[32m" . $this->name . "\e[39m recovered \e[31m35 \e[39mhp" . PHP_EOL;
         echo "\n";
     }
 
@@ -165,7 +165,7 @@ abstract class Character implements GlobalSkills
     {
         $defGain = floatval(rand(1, 3));
         $expGain = rand(30, 75);
-        echo ($this->name . ' gained ' . $expGain . " exp") . PHP_EOL;
+        echo ("\e[32m" . $this->name . "\e[39m" . ' gained ' . "\e[32m" . $expGain . "\e[39m exp \e[32m↑  \e[39m") . PHP_EOL;
         $this->exp = $this->exp + $expGain;
         echo "\n";
         if ($this->exp >= 100) {
@@ -176,17 +176,17 @@ abstract class Character implements GlobalSkills
             $this->physicalDamages += 3;
             $this->magicalDamages += 5;
             $this->exp = 0;
-            echo ($this->name . " has level up !\n") . PHP_EOL;
+            echo ($this->name . " has \e[37mlevel up !\e[39m\n") . PHP_EOL;
             sleep(1);
             echo "\n";
-            echo $this->name . " is now level " .  $this->level  . PHP_EOL;
+            echo "\e[32m" . $this->name . "\e[39m" . " is now level " . "\e[35m" .  $this->level . "\e[39m" . PHP_EOL;
             sleep(1);
             echo "\n";
-            echo "Health : " . $this->health . "(+10)". PHP_EOL;
-            echo "Defense : " . $this->defense . "(+". $defGain . ")" . PHP_EOL;
-            echo "Mana : " . $this->mana . "(+10)". PHP_EOL;
-            echo "Physical damage : " . $this->physicalDamages . "(+3)". PHP_EOL;
-            echo "Magical damage : " . $this->magicalDamages . "(+5)". PHP_EOL;
+            echo "\e[32m↑  \e[39mHp : " . $this->health . " (\e[32m+10\e[39m)". PHP_EOL;
+            echo "\e[32m↑  \e[39mDef : " . $this->defense . " (\e[32m+". $defGain . "\e[39m)" . PHP_EOL;
+            echo "\e[32m↑  \e[39mMana : " . $this->mana . " (\e[32m+10\e[39m)". PHP_EOL;
+            echo "\e[32m↑  \e[39mAd : " . $this->physicalDamages . " (\e[32m+3\e[39m)". PHP_EOL;
+            echo "\e[32m↑  \e[39mAp : " . $this->magicalDamages . " (\e[32m+5\e[39m)". PHP_EOL;
             echo "\n";
             
         }

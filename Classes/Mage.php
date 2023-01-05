@@ -53,10 +53,10 @@ class Mage extends Character
         if((($this->magicalDamages + 11) - ($target->defense)) > 0){
             $target->health -= (($this->magicalDamages + 11) - ($target->defense));
             $this->mana -= 45;
-            echo $this->name . " use Meteor !" . PHP_EOL;
-            echo $target->name . " lost " . (($this->magicalDamages + 11) - ($target->defense)) . " life points" . PHP_EOL;
+            echo "\e[32m" . $this->name . "\e[39m" . " use \e[35mMeteor !\e[39m" . PHP_EOL;
+            echo "\e[31m" . $target->name . "\e[39m" . " lost " . "\e[31m" .(($this->magicalDamages + 11) - ($target->defense)) . " life points\e[39m" . PHP_EOL;
         }else {
-            echo $target->name . ' lost ' . "0 life points" . PHP_EOL;
+            echo $target->name . ' lost ' . "\e[31m0 \e[39mlife points" . PHP_EOL;
         }   
     }
 
@@ -64,11 +64,11 @@ class Mage extends Character
     {
         if((($this->magicalDamages + 15) - $target->defense) > 0){
             $target->health -= (($this->magicalDamages + 15) - $target->defense);
-            echo $this->name . " use Fire Tempest !" . PHP_EOL;
+            echo "\e[32m" . $this->name . "\e[39m" . " use \e[35mFire Tempest \e[39m!" . PHP_EOL;
             $this->mana -= 30;
-            echo $target->name . " lost " . (($this->magicalDamages + 15) - $target->defense) . " life points" . PHP_EOL;
+            echo "\e[31m" . $target->name .  "\e[39m" . " lost " . "\e[31m" . (($this->magicalDamages + 15) - $target->defense) . " life points\e[39m" . PHP_EOL;
         }else {
-            echo $target->name . ' lost ' . "0 life points" . PHP_EOL;
+            echo $target->name . ' lost ' . "\e[31m0 life points\e[39m" . PHP_EOL;
         }  
     }
 

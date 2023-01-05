@@ -70,18 +70,18 @@ class Archer extends Character
     public function second($target)
     {
         if ($this->arrows <= 0) {
-            echo $this->name . " don't have any arrows left !" . PHP_EOL;
+            echo "\e[32m" . $this->name . " don't have any \e[35marrows\e[39m left !" . PHP_EOL;
             $this->buff();
-            return $this->name . " use Focus !" . PHP_EOL;
+            return "\e[32m" . $this->name . "\e[39m" . " use \e[35mFocus !\e[39m" . PHP_EOL;
         } else {
             $this->mana -= 60;
             $this->arrows -= 1;
-            echo $this->name . " use Triple Shot ! \n" . PHP_EOL;
+            echo "\e[32m" . $this->name . "\e[39m" . " use \e[35mTriple Shot \e[39m! \n" . PHP_EOL;
             if((($this->physicalDamages + 25) - $target->defense) > 0){
                 $target->health -= (($this->physicalDamages + 25) - $target->defense);
-                echo $target->name . " lost " . (($this->physicalDamages + 25) - $target->defense) . " life points" . PHP_EOL;
+                echo "\e[31m" . $target->name . "\e[39m" . " lost " . "\e[32m" . (($this->physicalDamages + 25) - $target->defense) . " life points \e[39m" . PHP_EOL;
             }else {
-                echo $target->name . ' lost ' . "0 life points" . PHP_EOL;
+                echo "\e[31m" . $target->name . "\e[39m" . ' lost ' . "\e[31m0 life points" . PHP_EOL;
             } 
         }
     }
@@ -93,12 +93,12 @@ class Archer extends Character
             $this->arrows += 5;
             $this->physicalDamages += 10;
             $this->defense += 8;
-            echo "Focus !\n" . PHP_EOL;
-            echo $this->name . " stats increased for 3 turns!" . PHP_EOL;
+            echo "\e[35mFocus \e[39m!\n" . PHP_EOL;
+            echo $this->name . " stats increased for \e[33m3 \e[39mturns!" . PHP_EOL;
             echo "\n";
-            echo "Defense : " . $this->defense . "(+" . "8)" . PHP_EOL;
-            echo "Arrow : " . $this->arrows . "(+" . "5)" . PHP_EOL;
-            echo "Physical Damage : " . $this->physicalDamages . "(+" . "10)" . PHP_EOL;
+            echo "\e[32m↑  \e[39mDef : " . $this->defense . "(\e[32m+" . "8\e[39m)" . PHP_EOL;
+            echo "\e[32m↑  \e[39mArrow : " . $this->arrows . "(\e[32m+" . "5\e[39m)" . PHP_EOL;
+            echo "\e[32m↑  \e[39mAd : " . $this->physicalDamages . "(\e[32m+" . "10\e[39m)" . PHP_EOL;
             $this->cooldown++;
         }
     }

@@ -51,12 +51,12 @@ class Knight extends Character
     public function first($target)
     {
         if((($this->physicalDamages + 15) - $target->defense) > 0){
-            echo $this->name . " use Water Slash !" . PHP_EOL;
+            echo "\e[32m" . $this->name . "\e[39m" . " use \e[35mWater Slash \e[39m!" . PHP_EOL;
             $target->health -= ($this->physicalDamages + 15) - $target->defense;
             $this->mana -= 60;
-            echo $target->name . " lost " . (($this->physicalDamages + 15) - $target->defense) . " life points" . PHP_EOL;
+            echo "\e[31m" . $target->name .  "\e[39m" . " lost " .  "\e[31m" . (($this->physicalDamages + 15) - $target->defense) . " life points\e[39m" . PHP_EOL;
         } else {
-            echo $target->name . ' lost ' . "0 life points" . PHP_EOL;
+            echo "\e[31m" . $target->name . "\e[39m"  . ' lost ' . "\e[31m0 life points\e[39m" . PHP_EOL;
         } 
     }
 
@@ -64,12 +64,12 @@ class Knight extends Character
     {
         $random = rand(20, 30);
         if((($this->physicalDamages + $random) - $target->defense) > 0){
-            echo $this->name . " use Slice !" . PHP_EOL;
+            echo "\e[32m" . $this->name . "\e[39m" . " use \e[35mSlice \e[39m!" . PHP_EOL;
             $this->mana -= 40;
             $target->health -= (($this->physicalDamages + $random) - $target->defense);
-            echo $target->name . " lost " . (($this->physicalDamages + $random) - $target->defense) . " life points" . PHP_EOL;
+            echo "\e[32m" . $target->name .  "\e[39m" . " lost " .  "\e[31m" . (($this->physicalDamages + $random) - $target->defense) . " life points\e[39m" . PHP_EOL;
         }else {
-            echo $target->name . ' lost ' . "0 life points" . PHP_EOL;
+            echo "\e[31m" . $target->name . "\e[39m" . ' lost ' . "\e[31m0 life points" . PHP_EOL;
         }     
     }
 
@@ -78,10 +78,10 @@ class Knight extends Character
         if ($this->cooldown === 0) {
             $this->defense += 15;
             $this->mana -= 25;
-            echo "Parade !\n" . PHP_EOL;
-            echo $this->name . " defense increased for 3 turns!" . PHP_EOL;
+            echo "\e[35m" . "Parade !\n" . PHP_EOL;
+            echo "\e[32m" . $this->name .  "\e[39m" . " defense increased for \e[35m3 \e[39mturns!" . PHP_EOL;
             echo "\n";
-            echo "Defense : " . $this->defense . "(+" . "15)" . PHP_EOL;
+            echo "\e[32m↑  \e[39mDef : " . $this->defense . "(\e[32m+" . "15\e[39m)" . PHP_EOL;
             $this->cooldown++;
         }
     }

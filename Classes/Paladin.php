@@ -51,11 +51,11 @@ class Paladin extends Character
     {
         if((($this->physicalDamages + 12) - $target->defense) > 0){
             $target->health -= ($this->physicalDamages + 12 + $this->magicalDamages) - $target->defense;
-            echo $this->name . " use Hammer of Light !" . PHP_EOL;
+            echo "\e[32m" . $this->name . "\e[39m"  . " use \e[35mHammer of Light \e[39m!" . PHP_EOL;
             $this->mana -= 40;
-            echo $target->name . " lost " .  ($this->physicalDamages + 12 + $this->magicalDamages) - $target->defense . " life points" . PHP_EOL;
+            echo "\e[31m" . $target->name . "\e[39m"  . " lost " .  "\e[31m"  . ($this->physicalDamages + 12 + $this->magicalDamages) - $target->defense . " life points" . PHP_EOL;
         }else {
-            echo $target->name . ' lost ' . "0 life points" . PHP_EOL;
+            echo "\e[31m" . $target->name .  "\e[39m" . ' lost ' . "\e[31m" . "0 life points\e[39m" . PHP_EOL;
         }
     }
 
@@ -64,10 +64,10 @@ class Paladin extends Character
         if((($this->physicalDamages + 16 + ($this->magicalDamages + 4)) - $target->defense) > 0){
             $target->health -= ($this->physicalDamages + 16 + ($this->magicalDamages + 4)) - $target->defense;
             $this->mana -= 50;
-            echo $this->name . " use Judgement !" . PHP_EOL;
-            echo $target->name . " lost " .  ($this->physicalDamages + 16 + ($this->magicalDamages + 4)) - $target->defense . " life points" . PHP_EOL;
+            echo "\e[32m" . $this->name  . " use \e[35mJudgement \e[39m!" . PHP_EOL;
+            echo "\e[31m" . $target->name . "\e[39m"  . " lost " . "\e[31m" . ($this->physicalDamages + 16 + ($this->magicalDamages + 4)) - $target->defense . " life points" . PHP_EOL;
         }else {
-            echo $target->name . ' lost ' . "0 life points" . PHP_EOL;
+            echo "\e[31m" . $target->name .  "\e[39m" . ' lost ' .  "\e[31m" . "0 life points" . PHP_EOL;
         } 
     }
 
@@ -75,10 +75,10 @@ class Paladin extends Character
     {
         if ($this->cooldown === 0) {
             $this->defense += 20;
-            echo "Holy Prayer !\n" . PHP_EOL;
-            echo $this->name . " stats increased for 3 turns!" . PHP_EOL;
+            echo "\e[35mHoly Prayer \e[39m!\n" . PHP_EOL;
+            echo "\e[32m" . $this->name . "\e[39m"  . " stats increased for \e[35m3 \e[39mturns!" . PHP_EOL;
             echo "\n";
-            echo "Defense : " . $this->defense . "(+" . "20)" . PHP_EOL;
+            echo "\e[32m↑  \e[39mDef : " . $this->defense . "(\e[32m+" . "20\e[39m)" . PHP_EOL;
             $this->mana -= 50;
             $this->cooldown++;
         }
