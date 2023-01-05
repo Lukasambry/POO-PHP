@@ -122,7 +122,7 @@ switch ($characterChoice) {
     default:
         echo "\e[1m\e[35mI don't understand your choice..." . PHP_EOL;
         echo "\n";
-        echo "\e[1m\e[35mPlease Chose a hero" . PHP_EOL;
+        echo "\e[1m\e[35mPlease Choose a hero" . PHP_EOL;
         echo "\n";
 }
 } while(!$choice);
