@@ -246,7 +246,7 @@ do {
         echo "\n";
 
         if(!$haveMana){
-            echo "\e[31mWARNING : You don't have enought mana for this...\e[39m" . PHP_EOL;
+            echo "\e[31mWARNING : You don't have enough mana for this...\e[39m" . PHP_EOL;
         }
 
         echo "\n";
@@ -297,7 +297,7 @@ do {
                 $yourTurn = false;
                 break;
             case 5:
-                if($you->checkIfManaIsAvailable(5, $you->getMana())){
+                if($you->checkIfManaIsAvailable(0, $you->getMana())){
                     $you->sleep();
                     sleep(1);
                     $yourTurn = false;

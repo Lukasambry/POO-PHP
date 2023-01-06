@@ -67,7 +67,7 @@ class Paladin extends Character
             echo "\e[32m" . $this->name  . " use \e[35mJudgement \e[39m!" . PHP_EOL;
             echo "\e[31m" . $target->name . "\e[39m"  . " lost " . "\e[31m" . ($this->physicalDamages + 16 + ($this->magicalDamages + 4)) - $target->defense . " life points" . PHP_EOL;
         }else {
-            echo "\e[31m" . $target->name .  "\e[39m" . ' lost ' .  "\e[31m" . "0 life points" . PHP_EOL;
+            echo "\e[31m" . $target->name .  "\e[39m" . ' lost ' .  "\e[31m" . "0 life points\e[39m" . PHP_EOL;
         } 
     }
 
