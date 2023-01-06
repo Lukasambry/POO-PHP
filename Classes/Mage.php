@@ -79,12 +79,12 @@ class Mage extends Character
             $this->magicalDamages += 10;
             $this->health += 15;
             $this->mana -= 70;
-            echo "Phoenix Flame !\n" . PHP_EOL;
+            echo "\e[35mPhoenix Flame \e[39m!\n" . PHP_EOL;
             echo $this->name . " stats increased for 3 turns!" . PHP_EOL;
             echo "\n";
-            echo "Defense : " . $this->defense . "(+" . "12)" . PHP_EOL;
-            echo "Health : " . $this->health . "(+" . "15)" . PHP_EOL;
-            echo "Magical Damage : " . $this->magicalDamages . "(+" . "10)" . PHP_EOL;
+            echo "Defense : " . $this->defense . "(\e[32m+" . "12\e[39m)" . PHP_EOL;
+            echo "Health : " . $this->health . "(\e[32m+" . "15\e[39m)" . PHP_EOL;
+            echo "Magical Damage : " . $this->magicalDamages . "(\e[32m+" . "10\e[39m)" . PHP_EOL;
             $this->cooldown++;
         }
     }
